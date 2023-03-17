@@ -89,4 +89,4 @@ If you would like to contribute to the project, please follow these steps:
 Distributed under the MIT License. See [LICENSE](https://github.com/GVishnudhasan/NoDueProject/blob/main/LICENSE.md) for more information.
 
 ## Credits
-This project was developed by G Vishnudhasan and A Ragul, D Geethapriya,K Nandhini, of II - Computer Science and Engineering at KSR Institute For Engineering and Technology.
+This project is being developed by G Vishnudhasan and A Ragul, D Geethapriya, K Nandhini, of II - Computer Science and Engineering at KSR Institute For Engineering and Technology.
