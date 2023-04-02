@@ -1,0 +1,57 @@
+.outer{ 
+    height:100vh;
+    background : linear-gradient( to top,#c9d8da 20%,rgb(4, 186, 247) 100%) no-repeat;
+} 
+.card-heading{
+    text-align: center;
+    margin-bottom: 10px; 
+    text-decoration-color: red;
+} 
+.btn{
+    margin-top: 20px;
+    border-radius: 15px; 
+} 
+
+.card{
+    min-height: 60px; 
+    min-width: 50;
+    box-shadow: 20px 20px 80px rgb(226, 185, 185);
+    border-radius: 12px;
+    margin-top: 100px; 
+    
+} 
+
+.input-field{
+    border-radius: 5px;
+    padding:10px;
+    display:flex;
+    align-items: center;
+    cursor:pointer;
+    border: 1px solid #ddd;
+    color:#4343ff;
+}
+.input-field.error{
+    border:1px solid red;
+    color:red;
+} 
+
+input[type='text']{
+    border:none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+} 
+
+img{
+    width:60px;
+    height:50px;
+    object-fit:cover;
+    border-radius: 50%;
+    position:relative;
+}
+
+.fa-eye-slah.btn{
+    border:none;
+    outline:none;
+    box-sizing: none;
+} 

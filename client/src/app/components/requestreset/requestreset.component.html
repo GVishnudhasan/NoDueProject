@@ -1,0 +1,27 @@
+<div class="outer">
+<div class="container-fluid form">
+    <div class="row form-row ">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card my-5">
+                <div class="card-body">
+                    <h5 class="text-center card-title "> Forgot password </h5>  
+                    <form [formGroup]="requestresetForm">
+                        <div class="form-group pt-3">
+                            <div class="input-field ">
+                                <span class="fa fa-envelope-o " aria-hidden="true"></span>
+                                <input formcontrolName="email" type="text" placeholder="Email"> 
+                                
+                            </div>
+                        </div> 
+                        <small *ngIf="requestresetForm.controls['email'].dirty && requestresetForm.hasError('required','email')" class="text-danger">*email is required</small>
+                        <div>
+                        <button type="submit" class=" btn btn-block btn-primary mt-2 w-100">send</button>   
+                        </div> 
+                             </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>  
