@@ -6,13 +6,14 @@ const Faculty = mongoose.model(
     name: String,
     facultyid: String,
     email: String,
+    dateOfJoining: Date,
     department: {
       type: String,
       enum: ["CSE", "IT", "ECE", "EEE", "MECH", "BME"],
     },
     designation: {
         type: String,
-        enum: ["Associate Professor", "Assistant Professor", "HoD", "Director", "Principal"],
+        enum: ["Assistant Professor", "Associate Professor", "Head of the Department", "Director"],
     },
     password: String,
     roles: [

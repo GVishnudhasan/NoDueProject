@@ -53,6 +53,7 @@ export class AuthService {
     name: String,
     facultyid: String,
     email: String,
+    dateOfJoining: Date,
     department: String,
     designation: String,
     password: String
@@ -63,6 +64,7 @@ export class AuthService {
         name,
         facultyid,
         email,
+        dateOfJoining,
         department,
         designation,
         password,

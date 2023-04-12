@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-faculty-signup',
@@ -25,28 +26,50 @@ export class FacultySignupComponent implements OnInit {
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
-  faculty_signup!: FormGroup;
-
-  form: FormGroup | any;
+  SignUpForm: FormGroup | any;
   submitted = false;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder) {}
-
-  userForm: FormGroup | any;
-  branch: any;
-  designation: any;
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     const fb = this.fb;
-    this.userForm = fb.group({
-      branch: fb.control('', [Validators.required]),
-      designation: fb.control('', [Validators.required]),
-    });
 
-    this.faculty_signup = this.fb.group({
+    this.SignUpForm = this.fb.group({
       name: ['', Validators.required],
-      password: ['', Validators.required],
+      facultyid: ['', Validators.required],
+      email: ['', Validators.required],
       dateOfJoining: ['', Validators.required],
+      department: fb.control('', [Validators.required]),
+      designation: fb.control('', [Validators.required]),
+      password: ['', Validators.required],
     });
+  }
+
+  onsubmit() {
+    this.submitted = true;
+    if (this.SignUpForm.invalid) {
+      return;
+    }
+    const { name, facultyid, email, dateOfJoining, department, designation, password } =
+      this.SignUpForm.value;
+    console.log(this.SignUpForm.value);
+
+    this.authService
+      .faculty_signup(name, facultyid, email, dateOfJoining, department, designation, password)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      });
   }
 }

@@ -7,7 +7,7 @@
                         <h3 class=" text-center pt-3 font-weight-bold">SignUp</h3>
                     </div>
                     <div class="panel-body p-3">
-                        <form [formGroup]="faculty_signup">
+                        <form [formGroup]="SignUpForm" (ngSubmit)="onsubmit()">
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -15,8 +15,19 @@
                                 </div>
                             </div>
                             <small
-                                *ngIf="faculty_signup.controls['name'].dirty && faculty_signup.hasError('required','name')"
+                                *ngIf="SignUpForm.controls['name'].dirty && SignUpForm.hasError('required','name')"
                                 class="text-danger">*Name is required
+                            </small>
+
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <input formControlName="facultyid" type="text" placeholder="Faculty ID">
+                                </div>
+                            </div>
+                            <small
+                                *ngIf="SignUpForm.controls['facultyid'].dirty && SignUpForm.hasError('required','facultyid')"
+                                class="text-danger">*Faculty ID is required
                             </small>
                             
                             <div class="form-group pt-3">
@@ -26,22 +37,34 @@
                                 </div>
                             </div>
                             <small
-                                *ngIf="faculty_signup.controls['email'].dirty && faculty_signup.hasError('required','email')"
+                                *ngIf="SignUpForm.controls['email'].dirty && SignUpForm.hasError('required','email')"
                                 class="text-danger">*Email is required
                             </small>
 
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <i class="fa fa-date" aria-hidden="true"></i>
+                                    <input formControlName="dateOfJoining" type="date" placeholder="Date">
+                                </div>
+                            </div>
+                            <small
+                                *ngIf="SignUpForm.controls['dateOfJoining'].dirty && SignUpForm.hasError('required','dateOfJoining')"
+                                class="text-danger">*Date is required
+                            </small>
+
                             <fieldset class="form-group pt-3">
-                                <label>Department</label><br /><br />
-                                <select class="input">
+                                <label>Department</label><br />
+                                <select class="input" [(ngModel)]="selectedBranch"
+                                [formControl]="SignUpForm.controls.department">
                                     <option disabled>--Select--</option>
                                     <option *ngFor="let category of Branches" [value]="category">{{category}}</option>
                                 </select>
                             </fieldset>
 
                             <fieldset class="form-group pt-3">
-                                <label>Desgination</label><br /><br />
+                                <label>Desgination</label><br />
                                 <select class="input" [(ngModel)]="selectedDesignation"
-                                    [formControl]="userForm.controls.designations">
+                                    [formControl]="SignUpForm.controls.designation">
                                     <option disabled>--Select--</option>
                                     <option *ngFor="let category of Designations" [value]="category">{{category}}
                                     </option>
@@ -56,7 +79,7 @@
                                 </div>
                             </div>
                             <small
-                                *ngIf="faculty_signup.controls['password'].dirty && faculty_signup.hasError('required','password')"
+                                *ngIf="SignUpForm.controls['password'].dirty && SignUpForm.hasError('required','password')"
                                 class="text-danger">*Password is required
                             </small>
 
