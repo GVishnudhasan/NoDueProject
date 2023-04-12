@@ -20,7 +20,6 @@ export class FacultySignupComponent implements OnInit {
     'Associate Professor',
     'Head of the Department',
     'Director',
-    'Principal',
   ];
 
   type: string = 'password';

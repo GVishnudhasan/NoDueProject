@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiMapService } from './api-map.service';
+import { StorageService } from './storage.service';
 
-describe('ApiMapService', () => {
-  let service: ApiMapService;
+describe('StorageService', () => {
+  let service: StorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiMapService);
+    service = TestBed.inject(StorageService);
   });
 
   it('should be created', () => {
