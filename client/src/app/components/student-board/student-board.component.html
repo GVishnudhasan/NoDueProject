@@ -1,0 +1,36 @@
+<h1>Dashboard</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Handling Faculty</th>
+            <th>No Due Request</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let course of enrolledCourses">
+            <td>{{ course.subject }}</td>
+            <td>{{ course.faculty }}</td>
+          </tr> -->
+        <tr *ngFor="let subject of subjects">
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.faculty }}</td>
+            <td>
+                <button>Request No Due</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- No Due Request Modal -->
+<!-- <div class="modal">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>Request No Due</h2>
+        <form (ngSubmit)="submitNoDueRequest()">
+            <label for="reason">Reason:</label>
+            <textarea name="reason" [(ngModel)]="noDueRequest.reason"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div> -->
