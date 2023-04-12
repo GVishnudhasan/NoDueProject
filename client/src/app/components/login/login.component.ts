@@ -12,7 +12,7 @@ export class LoginComponent  implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash"; 
 
-  loginForm: FormGroup |any;
+  loginForm: FormGroup | any;
 
 
 

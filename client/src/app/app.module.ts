@@ -9,6 +9,7 @@ import { SelectorComponent } from './components/selector/selector.component';
 import { RequestresetComponent } from './components/requestreset/requestreset.component';
 import { ResponseresetComponent } from './components/responsereset/responsereset.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FacultySignupComponent } from './components/faculty-signup/faculty-signup.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FacultySignupComponent } from './components/faculty-signup/faculty-sign
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
   ],

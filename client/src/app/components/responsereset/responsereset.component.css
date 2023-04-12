@@ -35,12 +35,12 @@
     color:red;
 } 
 
-input[type='text']{
+/* input[type='text']{
     border:none;
     outline: none;
     box-shadow: none;
     width: 100%;
-} 
+}  */
 
 img{
     width:60px;

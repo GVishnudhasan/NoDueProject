@@ -7,6 +7,8 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+
 @Component({
   selector: 'app-student-signup',
   templateUrl: './student-signup.component.html',
@@ -22,38 +24,63 @@ export class StudentSignupComponent implements OnInit {
   selectedSemester: string = '';
 
   Branches: any[] = ['CSE', 'EEE', 'IT', 'Mech', 'ECE', 'BME'];
-  Semester: any[] = ['odd', 'even'];
+  Semester: any[] = ['Odd', 'Even'];
   Year: any[] = ['1', '2', '3', '4'];
 
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
-  SignUpForm!: FormGroup;
-
-  form: FormGroup | any;
+  SignUpForm: FormGroup | any;
   submitted = false;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
-  userForm: FormGroup | any;
-  branch: any;
+  department: any;
   semester: any;
   year: any;
 
   ngOnInit(): void {
     const fb = this.fb;
-    this.userForm = fb.group({
-      branch: fb.control('', [Validators.required]),
-      year: fb.control('', [Validators.required]),
-      semester: fb.control('', [Validators.required]),
-    });
 
     this.SignUpForm = this.fb.group({
       name: ['', Validators.required],
+      regno: ['', Validators.required],
       email: ['', Validators.required],
+      department: fb.control('', [Validators.required]),
+      year: fb.control('', [Validators.required]),
+      semester: fb.control('', [Validators.required]),
       password: ['', Validators.required],
     });
   }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.SignUpForm.invalid) {
+      return;
+    }
+    const { name, regno, email, department, year, semester, password } =
+      this.SignUpForm.value;
+    console.log(this.SignUpForm.value);
+
+    this.authService
+      .student_signup(name, regno, email, department, year, semester, password)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        error: (err) => {
+          console.log(err)
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        },
+      });
+  }
+
   hideShowPass() {
     this.isText = !this.isText;
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');

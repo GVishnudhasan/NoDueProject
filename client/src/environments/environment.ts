@@ -5,7 +5,7 @@
 export const environment = {
   build_version: 'v1.5',
   production: false,
-  appurl: 'http://localhost:3000',
+  appurl: 'http://localhost:8080',
 };
 
 /*
