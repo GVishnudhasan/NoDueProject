@@ -7,13 +7,13 @@
                         <h3 class="text-center pt-3 font-weight-bold">Login</h3>
                     </div>
                     <div class="panel-body p-3">
-                        <form [formGroup]="loginForm">
+                        <form [formGroup]="loginForm" (ngSubmit)="login()">
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="fa fa-user" aria-hidden="true"></span>
-                                    <input formControlName="username" type="text" placeholder="Username"> 
+                                    <input formControlName="email" type="text" placeholder="E-mail"> 
                                 </div>
-                                <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">*Username is required</small>
+                                <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">*Username is required</small>
                             </div> 
                             <div class="form-group pt-3">
                                 <div class="input-field">
@@ -27,7 +27,7 @@
                                 <a id="forget" class="font-weight-bold" routerLink="/requestreset">Forget password?</a>
                             </div>
                             <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Are you student or faculty? <a id="forget" routerLink="/selector">Selector</a></div>
+                            <div class="text-center pt-4 text-muted">Don't Have an Account? <a id="forget" routerLink="/selector">Sign Up</a></div>
                         </form>
                     </div>
                 </div>

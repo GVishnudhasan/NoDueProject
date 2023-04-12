@@ -73,6 +73,7 @@ exports.facultySignup = (req, res) => {
     name: req.body.name,
     facultyid: req.body.facultyid,
     email: req.body.email,
+    dateOfJoining: req.body.dateOfJoining,
     department: req.body.department,
     designation: req.body.designation,
     password: bcrypt.hashSync(req.body.password, 8),
@@ -130,7 +131,7 @@ exports.facultySignup = (req, res) => {
 
 exports.signin = (req, res) => {
   Student.findOne({
-    regno: req.body.regno,
+    email: req.body.email,
   })
     .populate("roles", "-__v")
     .exec((err, user) => {
