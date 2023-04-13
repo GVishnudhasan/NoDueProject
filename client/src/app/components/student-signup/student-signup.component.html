@@ -1,95 +1,94 @@
-<div class="outer">
-    <div class="container">
-        <div class="row">
-            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-                <div class="panel border bg-white">
-                    <div class="panel heading">
-                        <h3 class=" text-center pt-3 font-weight-bold">Sign Up</h3>
-                    </div>
-
-                    <div class="panel-body p-3">
-                        <form [formGroup]="SignUpForm" (ngSubmit)="onSubmit()">
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <input formControlName="name" type="text" placeholder="Name">
-                                </div>
-                            </div>
-                            <small
-                                *ngIf="SignUpForm.controls['name'].touched && SignUpForm.controls['name'].dirty && SignUpForm.hasError('required','name')"
-                                class="text-danger">*Name is required
-                            </small>
-
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <input formControlName="regno" type="text" placeholder="Register Number">
-                                </div>
-                            </div>
-                            <small
-                                *ngIf="SignUpForm.controls['regno'].touched && SignUpForm.controls['regno'].dirty && SignUpForm.hasError('required','regno')"
-                                class="text-danger">*Register Number is required
-                            </small>
-                            <div class="form-group pt-3">
-
-                                <div class="input-field">
-                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                    <input formControlName="email" type="text" placeholder="Email">
-                                </div>
-                            </div>
-                            <small *ngIf="SignUpForm.controls['email'].dirty && SignUpForm.hasError('required','email')"
-                                class="text-danger">*Email is required
-                            </small>
-
-                            <fieldset class="form-group pt-3">
-                                <label>Department</label><br />
-                                <select class="input" [(ngModel)]="selectedBranch"
-                                    [formControl]="SignUpForm.controls.department">
-                                    <option disabled>--Select--</option>
-                                    <option *ngFor="let category of Branches" [value]="category">{{category}}</option>
-                                </select>
-                            </fieldset>
-
-                            <fieldset class="form-group pt-3">
-                                <label>Year</label><br />
-                                <select class="input" [(ngModel)]="selectedYear"
-                                    [formControl]="SignUpForm.controls.year">
-                                    <option disabled>--Select--</option>
-                                    <option *ngFor="let category of Year" [value]="category">{{category}}</option>
-                                </select>
-                            </fieldset>
-
-                            <fieldset class="form-group pt-3">
-                                <label>Semester</label><br />
-                                <select class="input" [(ngModel)]="selectedSemester"
-                                    [formControl]="SignUpForm.controls.semester">
-                                    <option disabled>--Select--</option>
-                                    <option *ngFor="let category of Semester" [value]="category">{{category}}</option>
-                                </select>
-                            </fieldset>
-
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <i class="fa fa-key" aria-hidden="true"></i>
-                                    <input formControlName="password" type="text" placeholder="Password">
-                                    <span (click)="hideShowPass()" class="fa fa-eye-slash " aria-hidden="true"></span>
-                                </div>
-                            </div>
-                            <small
-                                *ngIf="SignUpForm.controls['password'].dirty && SignUpForm.hasError('required','password')"
-                                class="text-danger">*Password is required
-                            </small>
-
-                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100">SignUp</button>
-                            <div class="alert alert-warning" *ngIf="isSignUpFailed">
-                                Signup failed!<br />{{ errorMessage }}
-                            </div>
-                            <div class="text-center pt-4 text-muted">Already have a account? <a id="forget"
-                                    routerLink="/login">Login</a></div>
-                        </form>
-                    </div>
-                </div>
+<div class="col-md-12">
+    <div class="card card-container">
+      <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required minlength="3"
+            maxlength="20" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.errors }" />
+          <div class="invalid-feedback" *ngIf="name.errors && f.submitted">
+            <div *ngIf="name.errors['required']">Name is required</div>
+            <div *ngIf="name.errors['minlength']">
+              Name must be at least 3 characters
             </div>
+            <div *ngIf="name.errors['maxlength']">
+              Name must be at most 20 characters
+            </div>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="rollno">Register Number</label>
+          <input type="text" class="form-control" name="regno" [(ngModel)]="form.regno" required minlength="9"
+            #regno="ngModel" [ngClass]="{ 'is-invalid': f.submitted && regno.errors }" />
+          <div class="invalid-feedback" *ngIf="regno.errors && f.submitted">
+            <div *ngIf="regno.errors['required']">Roll Number is required</div>
+            <div *ngIf="regno.errors['minlength']">
+              Roll Number must be at least 9 characters
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+          <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">Email is required</div>
+            <div *ngIf="email.errors['email']">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+  
+        <fieldset class="form-group">
+          <label for="department">Department</label>
+          <select class="form-control" [(ngModel)]="form.department" #department="ngModel" [ngModelOptions]="{standalone: true}"
+            [ngClass]="{ 'is-invalid': f.submitted && department.errors }">
+            <option disabled>--Select--</option>
+            <option *ngFor="let category of Departments" [value]="category">{{category}}</option>
+          </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="year">Year</label>
+          <select class="form-control" [(ngModel)]="form.year" #year="ngModel" [ngModelOptions]="{standalone: true}"
+            [ngClass]="{ 'is-invalid': f.submitted && year.errors }">
+            <option disabled>--Select--</option>
+            <option *ngFor="let category of Year" [value]="category">{{category}}</option>
+          </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label for="semester">Semester</label>
+          <select class="form-control" [(ngModel)]="form.semester" #semester="ngModel" [ngModelOptions]="{standalone: true}"
+            [ngClass]="{ 'is-invalid': f.submitted && semester.errors }">
+            <option disabled>--Select--</option>
+            <option *ngFor="let category of Semester" [value]="category">{{category}}</option>
+          </select>
+        </fieldset>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+          <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors['required']">Password is required</div>
+            <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Sign Up</button>
+        </div>
+  
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Signup failed!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
     </div>
-</div>
+  </div>

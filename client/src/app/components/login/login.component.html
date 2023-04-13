@@ -1,42 +1,3 @@
-<!-- <div class="outer">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="panel border bg-white">
-                    <div class="panel-heading">
-                        <h3 class="text-center pt-3 font-weight-bold">Login</h3>
-                    </div>
-                    <div class="panel-body p-3">
-                        <form [formGroup]="loginForm" (ngSubmit)="login()">
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <span class="fa fa-user" aria-hidden="true"></span>
-                                    <input formControlName="email" type="text" placeholder="E-mail"> 
-                                </div>
-                                <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">*Username is required</small>
-                            </div> 
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <span class="fa fa-key" aria-hidden="true"></span>
-                                    <input formControlName="password" [type]="type" placeholder="Password">
-                                    <span (click)="hideShowPass()" class="fa fa-eye-slash " aria-hidden="true"></span>
-                                </div>
-                                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
-                            </div>  
-                            <div class="form-group pt-3">
-                                <a id="forget" class="font-weight-bold" routerLink="/requestreset">Forget password?</a>
-                            </div>
-                            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't Have an Account? <a id="forget" routerLink="/selector">Sign Up</a></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
- -->
-
  <div class="col-md-12">
     <div class="card card-container">
       <img
@@ -78,6 +39,7 @@
             #password="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
           />
+          <span (click)="hideShowPass()" class="fa fa-eye-slash " aria-hidden="true"></span>
           <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
             <div *ngIf="password.errors['required']">Password is required</div>
             <div *ngIf="password.errors['minlength']">
@@ -99,6 +61,9 @@
   
       <div class="alert alert-success" *ngIf="isLoggedIn">
         Logged in as {{ name }}.
+      </div>
+      <div>
+        <a href class="nav-link" (click)="logout()">LogOut</a>
       </div>
     </div>
   </div>
