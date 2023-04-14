@@ -11,6 +11,9 @@ import { ResponseresetComponent } from './components/responsereset/responsereset
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FacultySignupComponent } from './components/faculty-signup/faculty-signup.component';
+import { StudentBoardComponent } from './components/student-board/student-board.component';
+import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,15 @@ import { FacultySignupComponent } from './components/faculty-signup/faculty-sign
     RequestresetComponent,
     ResponseresetComponent,
     FacultySignupComponent,
+    StudentBoardComponent,
+    FacultyBoardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     RouterModule,
     ReactiveFormsModule,
   ],

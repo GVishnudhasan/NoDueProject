@@ -1,0 +1,21 @@
+<h1>Dashboard</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Handling Faculty</th>
+            <th>No Due Request</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let subject of subjects">
+            <td>{{ subject.course_name }}</td>
+            <td>{{ subject.handlingFaculty }}</td>
+            <td>
+                <button (click)="onSubmit()">Request No Due</button>
+            </td>
+            <td> {{status}} </td>
+        </tr>
+    </tbody>
+</table>

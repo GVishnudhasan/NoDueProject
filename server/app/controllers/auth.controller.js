@@ -132,50 +132,89 @@ exports.facultySignup = (req, res) => {
 exports.signin = (req, res) => {
   Student.findOne({
     email: req.body.email,
-  })
-    .populate("roles", "-__v")
-    .exec((err, user) => {
-      if (err) {
-        res.status(500).send({ message: err });
-        return;
-      }
+  }).populate("roles", "-__v").exec((err, student) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
 
-      if (!user) {
-        return res.status(404).send({ message: "User Not found." });
-      }
-
+    if (student) {
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
-        user.password
+        student.password
       );
 
       if (!passwordIsValid) {
         return res.status(401).send({ message: "Invalid Password!" });
       }
 
-      var token = jwt.sign({ id: user.id }, config.secret, {
+      var token = jwt.sign({ id: student.id }, config.secret, {
         expiresIn: 86400, // 24 hours
       });
 
       var authorities = [];
-
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+      for (let i = 0; i < student.roles.length; i++) {
+        authorities.push("ROLE_" + student.roles[i].name.toUpperCase());
       }
 
       req.session.token = token;
 
-      res.status(200).send({
-        id: user._id,
-        name: user.name,
-        regno: user.regno,
-        email: user.email,
-        department: user.department,
-        year: user.year,
-        semester: user.semester,
+      return res.status(200).send({
+        id: student._id,
+        name: student.name,
+        regno: student.regno,
+        email: student.email,
+        department: student.department,
+        year: student.year,
+        semester: student.semester,
         roles: authorities,
       });
-    });
+    } else {
+      Faculty.findOne({
+        email: req.body.email,
+      }).populate("roles", "-__v").exec((err, faculty) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+
+        if (faculty) {
+          var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            faculty.password
+          );
+
+          if (!passwordIsValid) {
+            return res.status(401).send({ message: "Invalid Password!" });
+          }
+
+          var token = jwt.sign({ id: faculty.id }, config.secret, {
+            expiresIn: 86400, // 24 hours
+          });
+
+          var authorities = [];
+          for (let i = 0; i < faculty.roles.length; i++) {
+            authorities.push("ROLE_" + faculty.roles[i].name.toUpperCase());
+          }
+
+          req.session.token = token;
+
+          return res.status(200).send({
+            id: faculty._id,
+            name: faculty.name,
+            facultyid: faculty.facultyid,
+            email: faculty.email,
+            department: faculty.department,
+            dateOfJoining: faculty.dateOfJoining,
+            designation: faculty.designation,
+            roles: authorities,
+          });
+        } else {
+          return res.status(404).send({ message: "User Not found." });
+        }
+      });
+    }
+  });
 };
 
 exports.signout = async (req, res) => {
