@@ -2,9 +2,9 @@ import { Component , OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 
 @Component({
-  selector: 'app-responsereset',
-  templateUrl: './responsereset.component.html',
-  styleUrls: ['./responsereset.component.css']
+  selector: 'app-response-reset',
+  templateUrl: './response-reset.component.html',
+  styleUrls: ['./response-reset.component.css']
 })
 export class ResponseresetComponent implements OnInit {  
 
