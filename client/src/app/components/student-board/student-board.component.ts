@@ -37,9 +37,9 @@ export class StudentBoardComponent implements OnInit {
   }
 
   onSubmit() {
-    const studentId = this.storageService.getUser().regno;
-    const courseId = this.subjects[0].course_code;
-
+    const studentId = this.storageService.getUser().id;
+    const courseId = this.subjects[0]._id;
+    console.log(courseId, studentId)
     this.requestService.requestNoDue(courseId, studentId).subscribe({
       next: (data: any) => {
         this.status = data.status;

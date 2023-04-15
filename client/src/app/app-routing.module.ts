@@ -8,6 +8,7 @@ import { SelectorComponent } from './components/selector/selector.component';
 import { FacultySignupComponent } from './components/faculty-signup/faculty-signup.component';
 import { StudentBoardComponent } from './components/student-board/student-board.component';
 import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
+import { AdminBoardComponent } from './components/admin-board/admin-board.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'faculty-board',
     component: FacultyBoardComponent,
+  },
+  {
+    path: 'admin-board',
+    component: AdminBoardComponent,
   },
   {
     path: '',

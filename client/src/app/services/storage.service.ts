@@ -26,6 +26,15 @@ export class StorageService {
     return {};
   }
 
+  public getCourses(): any {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user).courses;
+    }
+
+    return [];
+  }
+
   public isLoggedIn(): boolean {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {

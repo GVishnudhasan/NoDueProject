@@ -1,5 +1,7 @@
 const db = require('../models');
 const Requests = db.requests;
+const Faculty = db.faculty;
+const Courses = db.courses;
 
 // Create a new request
 exports.createRequest = async (req, res) => {
@@ -16,27 +18,44 @@ exports.createRequest = async (req, res) => {
     }
 };
 
-// Get all pending requests
 exports.getPendingRequests = async (req, res) => {
     try {
-        const requests = await Requests.find({ status: 'pending' })
+        const faculty = await Faculty.findById(req.body._id);
+        console.log(faculty._id, faculty.name);
+        const subjects = await Courses.findOne({ handlingFaculty: faculty._id });
+        console.log("SUBJECTS:", subjects, subjects._id);
+
+        const requests = await Requests.find({ status: 'pending', courseId: subjects._id })
             .populate('studentId', 'name')
-            .populate('courseId', 'handlingFaculty');
-        res.status(201).json(requests);
+            .populate('courseId', 'handlingFaculty')
+            .exec(async (err, requests) => {
+                if (err) {
+                    console.error(err.message);
+                    res.status(500).json({ message: 'Server error' });
+                } else {
+                    if (!requests) {
+                        res.status(404).json({ message: 'No pending requests found.' });
+                    } else {
+                        res.status(200).json(requests);
+                    }
+                }
+            });
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: 'Server error' });
     }
 };
 
+
 // Approve a request by ID
 exports.approveRequest = async (req, res) => {
     try {
-        const request = await Request.findByIdAndUpdate(
+        const request = await Requests.findByIdAndUpdate(
             req.params.id,
             { status: 'approved' },
             { new: true }
         );
+        // console.log(request);
         res.json(request);
     } catch (error) {
         console.error(error.message);
@@ -47,7 +66,7 @@ exports.approveRequest = async (req, res) => {
 // Reject a request by ID
 exports.rejectRequest = async (req, res) => {
     try {
-        const request = await Request.findByIdAndUpdate(
+        const request = await Requests.findByIdAndUpdate(
             req.params.id,
             { status: 'rejected' },
             { new: true }

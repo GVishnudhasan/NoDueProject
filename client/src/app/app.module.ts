@@ -13,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FacultySignupComponent } from './components/faculty-signup/faculty-signup.component';
 import { StudentBoardComponent } from './components/student-board/student-board.component';
 import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
-import { ToastrModule } from 'ngx-toastr';
+import { AdminBoardComponent } from './components/admin-board/admin-board.component';
+// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,14 @@ import { ToastrModule } from 'ngx-toastr';
     FacultySignupComponent,
     StudentBoardComponent,
     FacultyBoardComponent,
+    AdminBoardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    // ToastrModule.forRoot(),
     RouterModule,
     ReactiveFormsModule,
   ],

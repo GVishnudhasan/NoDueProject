@@ -1,1 +1,39 @@
-<p>faculty-board works!</p>
+<h2>Faculty Board</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Register Number</th>
+      <th>Course Name</th>
+      <th>Course Code</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let request of pendingRequests">
+      <tr (click)="onSelect(request)">
+        <td>{{ request.studentId.name }}</td>
+        <td>{{ request.studentId.regno }}</td>
+        <td>{{ request.courseId.course_name }}</td>
+        <td>{{ request.courseId.course_code }}</td>
+        <td>
+          <button class="approve-button" (click)="approveRequest(request)">Approve</button>
+          <button class="reject-button" (click)="rejectRequest(request)">Reject</button>
+        </td>
+      </tr>
+      <tr *ngIf="selectedRequest === request">
+        <td colspan="5">
+          <div class="details">
+            <h3>Student Details</h3>
+            <p>Name: {{ request.studentId.name }}</p>
+            <p>Register Number: {{ request.studentId.registerNumber }}</p>
+            <p>Phone: {{ request.studentId.phone }}</p>
+            <p>Email: {{ request.studentId.email }}</p>
+            <p>Address: {{ request.studentId.address }}</p>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

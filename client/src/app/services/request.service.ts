@@ -20,4 +20,8 @@ export class RequestService {
       httpOptions
     );
   }
+
+  getPendingRequests() {
+    return this.http.get(REQUEST_API + 'display-pending');
+  }
 }
