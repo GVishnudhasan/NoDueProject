@@ -11,6 +11,7 @@ module.exports = function (app) {
 
   app.post('/api/request-nodue', controller.createRequest);
   app.get('/api/display-pending', controller.getPendingRequests);
+  app.get('/api/:courseId/:studentId', controller.getRequestStatus);
   app.put('/api/approve-request/:id', controller.approveRequest);
   app.put('/api/reject-request/:id', controller.rejectRequest);
 };  

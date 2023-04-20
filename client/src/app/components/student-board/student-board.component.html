@@ -1,21 +1,32 @@
 <h1>Dashboard</h1>
 <table>
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th>Handling Faculty</th>
-            <th>No Due Request</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let subject of subjects">
-            <td>{{ subject.course_name }}</td>
-            <td>{{ subject.handlingFaculty }}</td>
-            <td>
-                <button (click)="onSubmit()">Request No Due</button>
-            </td>
-            <td> {{status}} </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Handling Faculty</th>
+      <th>No Due Request</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="subjects">
+      <tr *ngFor="let subject of subjects">
+        <td>{{ subject.course_name }}</td>
+        <td>{{subject.handlingFaculty}}</td>
+        <td *ngIf="!subject.handlingFaculty">N/A</td>
+        <td>
+          <button (click)="onSubmit(subject._id)" [disabled]="subject.status === 'approved' || subject.status === 'pending'">Request No Due</button>
+        </td>
+        <td>
+          <span *ngIf="subject.status">{{ subject.status }}</span>
+          <span *ngIf="!subject.status">-</span>
+        </td>
+      </tr>
+    </ng-container>
+    <ng-container *ngIf="!subjects || subjects.length === 0">
+      <tr>
+        <td colspan="4">No data available</td>
+      </tr>
+    </ng-container>
+  </tbody>
 </table>

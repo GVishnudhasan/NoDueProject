@@ -1,8 +1,8 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
 
-module.exports = function(app) {
-  app.use(function(req, res, next) {
+module.exports = function (app) {
+  app.use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, Content-Type, Accept"
@@ -14,6 +14,11 @@ module.exports = function(app) {
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.studentBoard);
 
+  app.get(
+    "/api/test/faculty",
+    [authJwt.verifyToken, authJwt.isFaculty],
+    controller.facultyBoard
+  );
   app.get(
     "/api/test/hod",
     [authJwt.verifyToken, authJwt.isHoD],

@@ -30,5 +30,8 @@ module.exports = function(app) {
 
   app.post("/api/auth/signin", controller.signin);
 
+  app.get("/api/faculty/:id", controller.getFaculty);
+  app.get("/api/student/:id", controller.getStudent);
+
   app.post("/api/auth/signout", controller.signout);
 };

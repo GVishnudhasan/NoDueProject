@@ -12,6 +12,11 @@ const RequestSchema = mongoose.model("Requests",
             ref: 'Courses',
             required: true,
         },
+        facultyId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Faculty',
+            required: true,
+        },
         status: {
             type: String,
             enum: ['pending', 'approved', 'rejected'],
