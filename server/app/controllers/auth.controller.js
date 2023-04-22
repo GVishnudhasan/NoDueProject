@@ -217,6 +217,29 @@ exports.signin = (req, res) => {
   });
 };
 
+exports.getFaculty = async (req, res) => {
+  try {
+    const facultyId = req.params.id;
+    const faculty = await Faculty.findById(facultyId);
+    res.status(200).send(faculty);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err.message });
+  }
+};
+
+exports.getStudent = async (req, res) => {
+  try {
+    const studentId = req.params.id;
+    const student = await Student.findById(studentId);
+    res.status(200).send(student);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: err.message });
+  }
+};
+
+
 exports.signout = async (req, res) => {
   try {
     req.session = null;

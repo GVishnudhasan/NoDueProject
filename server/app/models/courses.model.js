@@ -22,10 +22,16 @@ const CourseSchema = mongoose.model("Courses",
             type: String,
             required: true
         },
-        handlingFaculty: {
-            type: String,
-            required: true
+        handlingFacultyName: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Faculty',
+            required: true,
         },
+        // handlingFacultyId: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'Faculty',
+        //     required: true,
+        // },
     })
 );
 

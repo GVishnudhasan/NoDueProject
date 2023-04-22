@@ -1,0 +1,52 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.approve-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.approve-button:hover {
+  background-color: #3e8e41;
+}
+
+.reject-button {
+  background-color: #db0404;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reject-button:hover {
+  background-color: #9c0d0d;
+}
+
+.show-more {
+  cursor: pointer;
+  color: blue;
+}
