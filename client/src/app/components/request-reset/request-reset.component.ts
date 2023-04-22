@@ -5,9 +5,9 @@ import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 
 @Component({
-  selector: 'app-requestreset',
-  templateUrl: './requestreset.component.html',
-  styleUrls: ['./requestreset.component.css']
+  selector: 'app-request-reset',
+  templateUrl: './request-reset.component.html',
+  styleUrls: ['./request-reset.component.css']
 })
 export class RequestresetComponent implements OnInit{ 
 
