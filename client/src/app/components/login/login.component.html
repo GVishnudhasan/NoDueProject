@@ -41,9 +41,7 @@
             #password="ngModel"
             [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
           />
-          <!--span (click)="hideShowPass()" class="fa fa-eye-slash " aria-hidden="true"></span-->
-          
-          
+           
           <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
             <div *ngIf="password.errors['required']">Password is required</div>
             <div *ngIf="password.errors['minlength']">
@@ -52,7 +50,9 @@
           </div>
         </div> 
         
-
+        <br>
+        
+        
         <div class="form-group">
           <button class="btn btn-primary btn-block"> 
             Login
