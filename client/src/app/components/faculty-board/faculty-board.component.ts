@@ -17,7 +17,7 @@ export class FacultyBoardComponent implements OnInit {
     private requestService: RequestService,
     private storageService: StorageService,
     private studentService: StudentService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const id = this.storageService.getUser().id;

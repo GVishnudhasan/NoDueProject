@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
         this.roles = this.storageService.getUser().roles;
         // this.reloadPage();
         console.log(this.roles);
-        if (this.roles.includes('ROLE_HOD')) {
-          this.router.navigate(['/hod-board']);
+        if (this.roles.includes('ROLE_ADMIN')) {
+          this.router.navigate(['/admin-board']);
         } else if (this.roles.includes('ROLE_FACULTY')) {
           this.router.navigate(['/faculty-board']);
         } else {

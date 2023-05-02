@@ -130,48 +130,6 @@ exports.facultySignup = (req, res) => {
   });
 };
 
-// exports.adminSignup = (req, res) => {
-//   const admin = new Admin({
-//     name: req.body.name,
-//     facultyid: req.body.facultyid,
-//     email: req.body.email,
-//     department: req.body.department,
-//     designation: req.body.designation,
-//     password: bcrypt.hashSync(req.body.password, 8),
-//   });
-
-//   admin.save((err, admin) => {
-//     if (err) {
-//       res.status(500).send({ message: err });
-//       return;
-//     }
-
-//     if (req.body.roles) {
-//       Role.find(
-//         {
-//           name: { $in: req.body.roles },
-//         },
-//         (err, roles) => {
-//           if (err) {
-//             res.status(500).send({ message: err });
-//             return;
-//           }
-
-//           admin.roles = roles.map((role) => role._id);
-//           admin.save((err) => {
-//             if (err) {
-//               res.status(500).send({ message: err });
-//               return;
-//             }
-
-//             res.send({ message: "Admin registered successfully!" });
-//           });
-//         }
-//       )
-//     }
-//   });
-// };
-
 exports.signin = (req, res) => {
   Student.findOne({
     email: req.body.email,
@@ -253,12 +211,53 @@ exports.signin = (req, res) => {
             roles: authorities,
           });
         } else {
-          return res.status(404).send({ message: "User Not found." });
+          Admin.findOne({
+            email: req.body.email,
+          }).populate("roles", "-__v").exec((err, admin) => {
+            if (err) {
+              res.status(500).send({ message: err });
+              return;
+            }
+
+            if (admin) {
+              var passwordIsValid = bcrypt.compareSync(
+                req.body.password,
+                admin.password
+              );
+
+              if (!passwordIsValid) {
+                return res.status(401).send({ message: "Invalid Password!" });
+              }
+
+              var token = jwt.sign({ id: admin.id }, config.secret, {
+                expiresIn: 86400, // 24 hours
+              });
+
+              var authorities = [];
+              for (let i = 0; i < admin.roles.length; i++) {
+                authorities.push("ROLE_" + admin.roles[i].name.toUpperCase());
+              }
+
+              req.session.token = token;
+
+              return res.status(200).send({
+                id: admin._id,
+                name: admin.name,
+                facultyid: admin.facultyid,
+                email: admin.email,
+                department: admin.department,
+                designation: admin.designation,
+                roles: authorities,
+              });
+            } else {
+              return res.status(404).send({ message: "User Not found." });
+            }
+          });
         }
       });
     }
   });
-};
+}
 
 exports.signout = async (req, res) => {
   try {

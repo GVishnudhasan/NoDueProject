@@ -10,5 +10,6 @@ module.exports = function (app) {
     });
 
     app.get("/api/student/:id", controller.getStudent);
+
     app.put("/api/update-flag/:id", controller.updateSendRequest);
 }

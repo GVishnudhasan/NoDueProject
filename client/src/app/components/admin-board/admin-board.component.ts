@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from 'src/app/services/request.service';
+import { AdminService } from 'src/app/services/admin.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { StudentService } from 'src/app/services/student.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CourseModalComponent } from '../course-modal/course-modal.component';
+
 
 @Component({
   selector: 'app-admin-board',
@@ -10,21 +13,50 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class AdminBoardComponent implements OnInit {
   constructor(
-    private requestService: RequestService,
+    private adminService: AdminService,
     private storageService: StorageService,
-    private studentService: StudentService
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
-  students: any[] = ["a", "b", "c"];
+  students: any[] = [];
   faculties: any[] = [];
   courses: any[] = [];
 
   ngOnInit(): void {
+    const dept = this.storageService.getUser().department;
     
+    this.adminService.getStudents(dept).subscribe({
+      next: (data: any) => {
+        this.students = data;
+        console.log(data)
+      }
+    })
+
+    this.adminService.getCourses(dept).subscribe({
+      next: (data: any) => {
+        this.courses = data;
+        console.log(data)
+      }
+    })
+
+    this.adminService.getFaculties(dept).subscribe({
+      next: (data: any) => {
+        this.faculties = data;
+        console.log(data)
+      }
+    })
+
   }
 
-  editStudent(student: any): void {
-    console.log(student);
+  openCourseModal() {
+    const modalRef = this.modalService.open(CourseModalComponent);
+    modalRef.componentInstance.newCourse = { name: '', code: '', description: '' };
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   deleteStudent(student: any): void {
@@ -32,23 +64,11 @@ export class AdminBoardComponent implements OnInit {
   }
 
   addStudent(): void {
-    console.log('add student');
-  }
-
-  getStudents(): void {
-    console.log('get students');
+    this.router.navigate(['/student-signup']);
   }
 
   addFaculty(): void {
-    console.log('add faculty');
-  }
-
-  getFaculties(): void {
-    console.log('get faculties');
-  }
-
-  editFaculty(faculty: any): void {
-    console.log(faculty);
+    this.router.navigate(['/student-signup']);
   }
 
   deleteFaculty(faculty: any): void {
@@ -57,10 +77,6 @@ export class AdminBoardComponent implements OnInit {
 
   addCourse(): void {
     console.log('add course');
-  }
-
-  editCourse(course: any): void {
-    console.log(course);
   }
 
   deleteCourse(course: any): void {

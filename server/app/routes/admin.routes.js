@@ -18,4 +18,8 @@ module.exports = function (app) {
         ],
         controller.createAdmin
     );
+
+    app.get("/admin/students", controller.getStudentbyDept);
+    app.get("/admin/courses", controller.getCoursesbyDept);
+    app.get("/admin/faculties", controller.getFacultybyDept);
 };
