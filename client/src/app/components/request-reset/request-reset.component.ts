@@ -1,9 +1,6 @@
 import { Component ,OnInit} from '@angular/core';
 import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 
-
-
-
 @Component({
   selector: 'app-request-reset',
   templateUrl: './request-reset.component.html',

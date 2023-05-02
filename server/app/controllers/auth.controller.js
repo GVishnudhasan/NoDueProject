@@ -3,6 +3,7 @@ const db = require("../models");
 const Student = db.student;
 const Faculty = db.faculty;
 const Role = db.role;
+const Admin = db.admin;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -129,6 +130,48 @@ exports.facultySignup = (req, res) => {
   });
 };
 
+// exports.adminSignup = (req, res) => {
+//   const admin = new Admin({
+//     name: req.body.name,
+//     facultyid: req.body.facultyid,
+//     email: req.body.email,
+//     department: req.body.department,
+//     designation: req.body.designation,
+//     password: bcrypt.hashSync(req.body.password, 8),
+//   });
+
+//   admin.save((err, admin) => {
+//     if (err) {
+//       res.status(500).send({ message: err });
+//       return;
+//     }
+
+//     if (req.body.roles) {
+//       Role.find(
+//         {
+//           name: { $in: req.body.roles },
+//         },
+//         (err, roles) => {
+//           if (err) {
+//             res.status(500).send({ message: err });
+//             return;
+//           }
+
+//           admin.roles = roles.map((role) => role._id);
+//           admin.save((err) => {
+//             if (err) {
+//               res.status(500).send({ message: err });
+//               return;
+//             }
+
+//             res.send({ message: "Admin registered successfully!" });
+//           });
+//         }
+//       )
+//     }
+//   });
+// };
+
 exports.signin = (req, res) => {
   Student.findOne({
     email: req.body.email,
@@ -216,29 +259,6 @@ exports.signin = (req, res) => {
     }
   });
 };
-
-exports.getFaculty = async (req, res) => {
-  try {
-    const facultyId = req.params.id;
-    const faculty = await Faculty.findById(facultyId);
-    res.status(200).send(faculty);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: err.message });
-  }
-};
-
-exports.getStudent = async (req, res) => {
-  try {
-    const studentId = req.params.id;
-    const student = await Student.findById(studentId);
-    res.status(200).send(student);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: err.message });
-  }
-};
-
 
 exports.signout = async (req, res) => {
   try {

@@ -18,6 +18,14 @@ const Student = mongoose.model(
       type: String,
       enum: ["Odd", "Even"],
     },
+    hodSignature: {
+      type: Boolean,
+      default: false,
+    },
+    sendRequest: {
+      type: Boolean,
+      default: false,
+    },
     password: String,
     roles: [
       {

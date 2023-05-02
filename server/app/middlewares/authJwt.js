@@ -3,6 +3,7 @@ const config = require("../config/auth.config.js");
 const db = require("../models");
 const Student = db.student;
 const Faculty = db.faculty;
+const Admin = db.admin;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
@@ -84,7 +85,7 @@ isHoD = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-  Faculty.findById(req.userId).exec((err, user) => {
+  Admin.findById(req.facultyid).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;

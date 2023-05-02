@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const STUDENT_API = 'http://localhost:8080/api/student';
+const UPDATE_API = 'http://localhost:8080/api/update-flag';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -16,5 +17,9 @@ export class StudentService {
 
   getStudent(id: String): Observable<any> {
     return this.http.get(`${STUDENT_API}/${id}`, httpOptions);
+  }
+
+  updateFlag(id: String): Observable<any> {
+    return this.http.put(`${UPDATE_API}/${id}`, httpOptions);
   }
 }
