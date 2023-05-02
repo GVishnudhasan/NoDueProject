@@ -3,16 +3,12 @@
 // @import '~ngx-toastr/toastr';
 // @import 'node_modules/ngx-toastr/toastr';
 /* styles.css */
-.image-container {
-    max-width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .image-container img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+.bg{
+  background-color: aquamarine;
+}
+
+.img-responsive{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
