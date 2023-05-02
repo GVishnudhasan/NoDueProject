@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     email: null,
     password: null,
   };
+  showPassword: boolean = false;
   type: string = 'password';
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
@@ -21,7 +22,11 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   email: string = '';
-  name: string = '';
+  name: string = ''; 
+
+  togglePasswordVisibility(){
+    this.showPassword = !this.showPassword;
+  }
 
   constructor(
     private authService: AuthService,
@@ -64,11 +69,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  hideShowPass() {
+  /*hideShowPass() {
     this.isText = !this.isText;
     this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
     this.isText ? (this.type = 'text') : (this.type = 'password');
-  }
+  }*/
 
   reloadPage(): void {
     window.location.reload();

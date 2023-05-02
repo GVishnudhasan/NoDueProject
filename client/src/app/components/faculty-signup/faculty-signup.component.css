@@ -70,6 +70,10 @@ label {
     margin-top: 10px;
   }
   
+  .bg-img{
+    background-image: url('/src/assets/image1.png');
+
+    }
   .card-container.card {
     max-width: 400px !important;
     padding: 40px 40px;

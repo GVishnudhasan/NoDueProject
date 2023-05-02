@@ -2,3 +2,17 @@
 // @import "~bootstrap/dist/css/bootstrap.css";
 // @import '~ngx-toastr/toastr';
 // @import 'node_modules/ngx-toastr/toastr';
+/* styles.css */
+.image-container {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
