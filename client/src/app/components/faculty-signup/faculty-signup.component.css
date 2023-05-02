@@ -101,3 +101,16 @@ label {
     -webkit-border-radius: 50%;
     border-radius: 50%;
   }
+
+  .btn {
+    width: 320px;
+    height: 45px;
+    background-color: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
+    font-weight: 500;
+  }
