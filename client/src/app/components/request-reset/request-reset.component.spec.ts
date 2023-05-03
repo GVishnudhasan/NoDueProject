@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResponseresetComponent } from './responsereset.component';
+import { RequestresetComponent } from './request-reset.component';
 
-describe('ResponseresetComponent', () => {
-  let component: ResponseresetComponent;
-  let fixture: ComponentFixture<ResponseresetComponent>;
+describe('RequestresetComponent', () => {
+  let component: RequestresetComponent;
+  let fixture: ComponentFixture<RequestresetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResponseresetComponent ]
+      declarations: [ RequestresetComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResponseresetComponent);
+    fixture = TestBed.createComponent(RequestresetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

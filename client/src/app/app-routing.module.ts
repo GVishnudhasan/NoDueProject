@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { RequestresetComponent } from './components/requestreset/requestreset.component';
-import { ResponseresetComponent } from './components/responsereset/responsereset.component';
+import { RequestresetComponent } from './components/request-reset/request-reset.component';
+import { ResponseresetComponent } from './components/response-reset/response-reset.component';
 import { StudentSignupComponent } from './components/student-signup/student-signup.component';
 import { SelectorComponent } from './components/selector/selector.component';
 import { FacultySignupComponent } from './components/faculty-signup/faculty-signup.component';
@@ -24,11 +24,11 @@ const routes: Routes = [
     component: SelectorComponent,
   },
   {
-    path: 'requestreset',
+    path: 'request-reset',
     component: RequestresetComponent,
   },
   {
-    path: 'responsereset',
+    path: 'response-reset',
     component: ResponseresetComponent,
   },
   {
