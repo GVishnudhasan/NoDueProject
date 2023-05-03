@@ -22,4 +22,7 @@ module.exports = function (app) {
     app.get("/admin/students", controller.getStudentbyDept);
     app.get("/admin/courses", controller.getCoursesbyDept);
     app.get("/admin/faculties", controller.getFacultybyDept);
+    app.delete("/admin/delete-student/:id", controller.deleteStudentById);
+    app.delete("/admin/delete-faculty/:id", controller.deleteFacultyById);
+    app.delete("/admin/delete-course/:id", controller.deleteCourseById);
 };

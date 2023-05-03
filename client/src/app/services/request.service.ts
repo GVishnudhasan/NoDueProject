@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class RequestService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   requestNoDue(courseId: string, studentId: string, facultyId: string) {
     return this.http.post(
@@ -32,11 +32,19 @@ export class RequestService {
     );
   };
 
-  approveRequest(id: string){
+  approveRequest(id: string) {
     return this.http.put(REQUEST_API + 'approve-request/' + id, httpOptions);
   }
 
-  rejectRequest(id: string){
+  rejectRequest(id: string) {
     return this.http.put(REQUEST_API + 'reject-request/' + id, httpOptions);
+  }
+
+  updateRemarks(id: string, message: string) {
+    console.log(message);
+    return this.http.put(REQUEST_API + 'update-remarks/' + id,
+      message,
+      httpOptions
+    );
   }
 }

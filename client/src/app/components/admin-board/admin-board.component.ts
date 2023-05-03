@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CourseModalComponent } from '../course-modal/course-modal.component';
-
 
 @Component({
   selector: 'app-admin-board',
@@ -15,9 +12,8 @@ export class AdminBoardComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private storageService: StorageService,
-    private router: Router,
-    private modalService: NgbModal
-  ) {}
+    private router: Router
+  ) { }
 
   students: any[] = [];
   faculties: any[] = [];
@@ -25,7 +21,7 @@ export class AdminBoardComponent implements OnInit {
 
   ngOnInit(): void {
     const dept = this.storageService.getUser().department;
-    
+
     this.adminService.getStudents(dept).subscribe({
       next: (data: any) => {
         this.students = data;
@@ -49,18 +45,17 @@ export class AdminBoardComponent implements OnInit {
 
   }
 
-  openCourseModal() {
-    const modalRef = this.modalService.open(CourseModalComponent);
-    modalRef.componentInstance.newCourse = { name: '', code: '', description: '' };
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-
   deleteStudent(student: any): void {
-    console.log(student);
+    this.adminService.deleteStudent(student).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Do something on success
+      },
+      error: (err) => {
+        console.log(err);
+        // Do something on error
+      },
+    });
   }
 
   addStudent(): void {
@@ -68,18 +63,36 @@ export class AdminBoardComponent implements OnInit {
   }
 
   addFaculty(): void {
-    this.router.navigate(['/student-signup']);
+    this.router.navigate(['/faculty-signup']);
   }
 
   deleteFaculty(faculty: any): void {
-    console.log(faculty);
+    this.adminService.deleteFaculty(faculty).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Do something on success
+      },
+      error: (err) => {
+        console.log(err);
+        // Do something on error
+      },
+    });
   }
 
   addCourse(): void {
-    console.log('add course');
+    this.router.navigate(['/add-course']);
   }
 
   deleteCourse(course: any): void {
-    console.log(course);
+    this.adminService.deleteCourse(course).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Do something on success
+      },
+      error: (err) => {
+        console.log(err);
+        // Do something on error
+      },
+    });
   }
 }

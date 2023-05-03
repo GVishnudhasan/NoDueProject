@@ -92,3 +92,39 @@ exports.getCoursesbyDept = async (req, res) => {
         res.status(500).send({ message: err.message });
     }
 };
+
+exports.deleteStudentById = (req, res, next) => {
+    const studentId = req.params.id;
+    Student.findByIdAndRemove(studentId)
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        });
+};
+
+exports.deleteFacultyById = (req, res, next) => {
+    const facultyId = req.params.id;
+    Faculty.findByIdAndRemove(facultyId)
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        });
+};
+
+exports.deleteCourseById = (req, res, next) => {
+    const courseId = req.params.id;
+    Courses.findByIdAndRemove(courseId)
+        .then(() => {
+            res.status(204).send();
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send({ message: err.message });
+        });
+};

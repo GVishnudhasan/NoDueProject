@@ -14,4 +14,5 @@ module.exports = function (app) {
   app.get('/api/:courseId/:studentId', controller.getRequestStatus);
   app.put('/api/approve-request/:id', controller.approveRequest);
   app.put('/api/reject-request/:id', controller.rejectRequest);
+  app.put('/api/update-remarks/:id', controller.updateRemarks);
 };  
