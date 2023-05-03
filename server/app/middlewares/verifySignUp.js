@@ -2,6 +2,7 @@ const db = require("../models");
 const ROLES = db.ROLES;
 const Student = db.student;
 const Faculty = db.faculty;
+const Admin = db.admin;
 
 checkDuplicateUsernameOrEmailforStudent = (req, res, next) => {
   // Username
@@ -20,6 +21,40 @@ checkDuplicateUsernameOrEmailforStudent = (req, res, next) => {
 
     // Email
     Student.findOne({
+      email: req.body.email
+    }).exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+
+      if (user) {
+        res.status(400).send({ message: "Failed! This Email is already taken!" });
+        return;
+      }
+
+      next();
+    });
+  });
+};
+
+checkDuplicateUsernameOrEmailforAdmin = (req, res, next) => {
+  // Username
+  Admin.findOne({
+    facultyid: req.body.facultyid
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+
+    if (user) {
+      res.status(400).send({ message: "Failed! This Faculty Id is already taken!" });
+      return;
+    }
+
+    // Email
+    Admin.findOne({
       email: req.body.email
     }).exec((err, user) => {
       if (err) {
@@ -89,6 +124,7 @@ checkRolesExisted = (req, res, next) => {
 const verifySignUp = {
   checkDuplicateUsernameOrEmailforStudent,
   checkDuplicateUsernameOrEmailforFaculty,
+  checkDuplicateUsernameOrEmailforAdmin,
   checkRolesExisted
 };
 

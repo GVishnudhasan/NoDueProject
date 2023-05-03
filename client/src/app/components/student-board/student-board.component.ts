@@ -3,6 +3,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { RequestService } from 'src/app/services/request.service';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { StudentService } from 'src/app/services/student.service';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,7 +20,8 @@ export class StudentBoardComponent implements OnInit {
     private coursesService: CourseService,
     private storageService: StorageService,
     private requestService: RequestService,
-    private facultyService: FacultyService
+    private facultyService: FacultyService,
+    private studentService: StudentService,
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +119,27 @@ export class StudentBoardComponent implements OnInit {
       error: (err) => {
         console.log(err);
       },
+    });
+  }
+
+  isHoDButtonEnabled(): boolean {
+    const allCoursesApproved = this.subjects.every((subject) => subject.status === 'approved');
+    if (!allCoursesApproved) {
+      console.log('Cannot request HoD signature as not all courses are approved');
+      return false;
+    }
+    return true;
+  }
+
+  requestHoDSignature() {
+    const studentId = this.storageService.getUser().id;
+    this.studentService.updateFlag(studentId).subscribe({
+      next: (data: any) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
     });
   }
 }

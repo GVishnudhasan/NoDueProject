@@ -50,6 +50,10 @@ app.get("/", (req, res) => {
 });
 
 // routes
+require("./app/routes/faculty.routes")(app);
+require("./app/routes/student.routes")(app);
+// require("./app/routes/hod.routes")(app);
+require("./app/routes/admin.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/courses.routes")(app);
