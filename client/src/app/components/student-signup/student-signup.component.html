@@ -79,7 +79,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
+          <button (click)="AlertWithSuccess()"class="btn btn-primary btn-block">Sign Up</button>
         </div>
   
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

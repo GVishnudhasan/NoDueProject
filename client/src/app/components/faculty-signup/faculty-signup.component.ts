@@ -84,7 +84,7 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-faculty-signup',
   templateUrl: './faculty-signup.component.html',
@@ -115,7 +115,11 @@ export class FacultySignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {} 
+
+  AlertWithSuccess(){
+    Swal.fire("Thank You...",'Signup Successfully','success')
+  }
 
   onSubmit(): void {
     const {

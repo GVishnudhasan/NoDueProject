@@ -97,7 +97,8 @@ import {
   FormGroup,
   Validators,
   NgForm,
-} from '@angular/forms';
+} from '@angular/forms'; 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-signup',
@@ -127,7 +128,11 @@ export class StudentSignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {} 
+
+  AlertWithSuccess(){
+    Swal.fire("Thank You...",'Signup Successfully','success')
+  }
 
   onSubmit(): void {
     const { name, regno, email, department, year, semester, password } =
@@ -151,3 +156,4 @@ export class StudentSignupComponent implements OnInit {
       });
   }
 }
+

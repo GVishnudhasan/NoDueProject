@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -62,6 +63,10 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       },
     });
+  } 
+
+  alertwithsuccess(){
+    Swal.fire("Thank You...",'Login Successfully','success')
   }
 
   hideShowPass() {
