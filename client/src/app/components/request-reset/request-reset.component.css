@@ -1,6 +1,6 @@
 .outer{ 
     height:100vh;
-    background : linear-gradient( to top,#ccccf1 20%,rgb(7, 184, 243) 100%) no-repeat;
+    background-color:aqua; 
 } 
 .card-heading{
     text-align: center;
@@ -8,15 +8,22 @@
     text-decoration-color: red;
 } 
 .btn{
-    margin-top: 20px;
-    border-radius: 15px; 
+  width: 320px;
+  height: 45px;
+  background-color: #162938;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  font-weight: 500; 
 } 
 
 .card{
     min-height: 60px; 
     min-width: 50;
-    box-shadow: 20px 20px 80px rgb(226, 185, 185);
-    border-radius: 12px;
+    border-radius: 0px;
     margin-top: 100px; 
     
 } 
@@ -41,11 +48,3 @@ input[type='text']{
     box-shadow: none;
     width: 100%;
 } 
-
-img{
-    width:60px;
-    height:50px;
-    object-fit:cover;
-    border-radius: 50%;
-    position:relative;
-}

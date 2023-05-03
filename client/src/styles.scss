@@ -2,3 +2,16 @@
 // @import "~bootstrap/dist/css/bootstrap.css";
 // @import '~ngx-toastr/toastr';
 // @import 'node_modules/ngx-toastr/toastr';
+/* styles.css */
+.bg{
+  background-color: aquamarine;
+}
+
+.img-responsive{
+  display: block;
+  max-width: 100%;
+  height: 150px;
+  align-items: center;
+  width: 100%;
+}
+
