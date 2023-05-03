@@ -17,7 +17,7 @@
       <td>{{ student.name }}</td>
       <td>{{ student.year }}</td>
       <td>
-        <button (click)="deleteStudent(student)">Delete</button>
+        <button (click)="deleteStudent(student._id)">Delete</button>
       </td>
     </tr>
   </tbody>
@@ -42,7 +42,7 @@
       <td>{{ faculty.name }}</td>
       <td>{{ faculty.department }}</td>
       <td>
-        <button (click)="deleteFaculty(faculty)">Delete</button>
+        <button (click)="deleteFaculty(faculty._id)">Delete</button>
       </td>
     </tr>
   </tbody>
@@ -55,22 +55,22 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
+      <th>Course Name</th>
+      <th>Course Code</th>
       <th>Department</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let course of courses">
-      <td>{{ course.id }}</td>
-      <td>{{ course.name }}</td>
+      <td>{{ course.course_name }}</td>
+      <td>{{ course.course_code }}</td>
       <td>{{ course.department }}</td>
       <td>
-        <button (click)="deleteCourse(course)">Delete</button>
+        <button (click)="deleteCourse(course._id)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<button (click)="openCourseModal()">Add Course</button>
+<button (click)="addCourse()">Add Course</button>

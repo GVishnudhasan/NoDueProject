@@ -26,15 +26,17 @@ export class CourseService {
     year: string,
     semester: string,
     course_name: string,
-    course_code: string
+    course_code: string,
+    faculty: string
   ):
     Observable<any> {
     return this.http.post(ADD_COURSE_API, {
-      course_name,
-      course_code,
       department,
       year,
-      semester
+      semester,
+      course_name,
+      course_code,
+      faculty
     },
       httpOptions
     );

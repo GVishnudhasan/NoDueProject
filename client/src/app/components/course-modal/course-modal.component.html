@@ -55,6 +55,15 @@
         </select>
       </fieldset>
 
+      <fieldset class="form-group">
+        <label for="faculty">Handling Faculty</label>
+        <select class="form-control" [(ngModel)]="form.faculty" #faculty="ngModel" [ngModelOptions]="{standalone: true}"
+          [ngClass]="{ 'is-invalid': f.submitted && faculty.errors }">
+          <option disabled>--Select--</option>
+          <option *ngFor="let faculty of faculties" [value]="faculty._id">{{faculty.name}}</option>
+        </select>
+      </fieldset>
+
       <div class="form-group">
         <button class="btn btn-primary btn-block">Sign Up</button>
       </div>
