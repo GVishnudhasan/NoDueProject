@@ -55,7 +55,8 @@ exports.getRequestStatus = async (req, res) => {
         if (!request) {
             res.status(404).json({ message: 'Request not found' });
         } else {
-            res.json(request.status);
+            const data = { status: request.status, remarks: request.remarks };
+            res.json(data);
         }
     } catch (error) {
         console.error(error.message);
@@ -69,7 +70,7 @@ exports.approveRequest = async (req, res) => {
         const request = await Requests.findByIdAndUpdate(
             req.params.id,
             { status: 'approved' },
-            { new: true }
+            // { new: true }
         );
         // console.log(request);
         res.json(request);
@@ -85,7 +86,7 @@ exports.rejectRequest = async (req, res) => {
         const request = await Requests.findByIdAndUpdate(
             req.params.id,
             { status: 'rejected' },
-            { new: true }
+            // { new: true }
         );
         res.json(request);
     } catch (error) {
@@ -93,3 +94,19 @@ exports.rejectRequest = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+exports.updateRemarks = async (req, res) => {
+    try {
+        const msg = req.body.message;
+        const request = await Requests.findByIdAndUpdate(
+            req.params.id,
+            { remarks: msg },
+            // { new: true }
+        );
+        res.json(request);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+

@@ -3,6 +3,9 @@ import { CourseService } from 'src/app/services/course.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { RequestService } from 'src/app/services/request.service';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { StudentService } from 'src/app/services/student.service';
+import jsPDF from 'jspdf';
+import autoTable from "jspdf-autotable";
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,8 +22,9 @@ export class StudentBoardComponent implements OnInit {
     private coursesService: CourseService,
     private storageService: StorageService,
     private requestService: RequestService,
-    private facultyService: FacultyService
-  ) {}
+    private facultyService: FacultyService,
+    private studentService: StudentService,
+  ) { }
 
   ngOnInit(): void {
     console.log(this.storageService.getUser());
@@ -73,7 +77,9 @@ export class StudentBoardComponent implements OnInit {
               .getRequestStatus(courseId, studentId)
               .subscribe({
                 next: (data: any) => {
-                  subject.status = data;
+                  console.log(data)
+                  subject.status = data.status;
+                  subject.remarks = data.remarks;
                 },
                 error: (err) => {
                   console.log(err);
@@ -119,4 +125,116 @@ export class StudentBoardComponent implements OnInit {
       },
     });
   }
+
+  isHoDButtonEnabled(): boolean {
+    const allCoursesApproved = this.subjects.every((subject) => subject.status === 'approved');
+    if (!allCoursesApproved) {
+      console.log('Cannot request HoD signature as not all courses are approved');
+      return false;
+    }
+    return true;
+  }
+
+  requestHoDSignature() {
+    const studentId = this.storageService.getUser().id;
+    this.studentService.updateFlag(studentId).subscribe({
+      next: (data: any) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  // downloadNoDueForm() {
+  //   console.log(this.subjects)
+  //   const doc = new jsPDF();
+  //   const name = this.storageService.getUser().name;
+  //   const regNo = this.storageService.getUser().regno;
+  //   const dept = this.storageService.getUser().department;
+  //   const year = this.storageService.getUser().year;
+  //   const sem = this.storageService.getUser().semester;
+
+  //   doc.setFontSize(20);
+  //   doc.text(`KSR Institute For Engineering and Technology`, 40, 8);
+  //   doc.setFontSize(18);
+  //   doc.text(`Department of ${dept}`, 65, 15);
+  //   doc.setFontSize(16);
+  //   doc.text(`No Due Certificate`, 70, 23);
+  //   doc.setFontSize(12);
+  //   doc.text(`Name: ${name}`, 15, 30);
+  //   doc.text(`Registration No.: ${regNo}`, 120, 30);
+  //   // doc.text(`Department: ${dept}`, 15, 40);
+  //   doc.text(`Year: ${year}`, 120, 40);
+  //   doc.text(`Semester: ${sem}`, 15, 40);
+  //   autoTable(doc, {
+  //     head:[
+  //       ["Course Name", "Course Code", "Handling Faculty", "Status", "Remarks"],
+  //     ],
+  //     body: this.subjects.map(subject => [
+  //       subject.course_name,
+  //       subject.course_code,
+  //       subject.handlingFaculty,
+  //       subject.status,
+  //       subject.remarks
+  //     ])
+  //   })
+  //   doc.setFontSize(10);
+  //   doc.text(`-------`, 170, 215);
+  //   doc.text(`HOD`, 170, 220);
+  //   doc.text(`------------------`, 15, 215);
+  //   doc.text(`Class Advisor`, 15, 220);
+  //   doc.save(`no_due_form.pdf`);
+  // }
+  downloadNoDueForm() {
+    console.log(this.subjects);
+    const doc = new jsPDF();
+    const name = this.storageService.getUser().name;
+    const regNo = this.storageService.getUser().regno;
+    const dept = this.storageService.getUser().department;
+    const year = this.storageService.getUser().year;
+    const sem = this.storageService.getUser().semester;
+  
+    doc.setFontSize(20);
+    doc.text(`KSR Institute For Engineering and Technology`, 37, 8);
+    doc.text(`Department of ${dept}`, 67, 18);
+    doc.setFontSize(16);
+    doc.text(`No Due Certificate`, 76, 27);
+    doc.setFontSize(12);
+    doc.text(`Name: ${name}`, 20, 35);
+    doc.text(`Registration No.: ${regNo}`, 125, 35);
+    // doc.text(`Department: ${dept}`, 15, 40);
+    doc.text(`Year: ${year}`, 125, 43);
+    doc.text(`Semester: ${sem}`, 20, 43);
+  
+    // Calculate the x and y coordinates for the table to be at the center of the page
+    const tableWidth = 160;
+    const startX = (doc.internal.pageSize.width - tableWidth) / 2;
+    const startY = 50;
+    
+    autoTable(doc, {
+      head: [
+        ["Course Name", "Course Code", "Handling Faculty", "Status", "Remarks"],
+      ],
+      body: this.subjects.map((subject) => [
+        subject.course_name,
+        subject.course_code,
+        subject.handlingFaculty,
+        subject.status,
+        subject.remarks,
+      ]),
+      startY: startY,
+      margin: { top: startY + 10 },
+    });
+  
+    doc.setFontSize(10);
+    doc.text(`-------`, 170, 190);
+    doc.text(`HOD`, 170, 195);
+    doc.text(`------------------`, 15, 190);
+    doc.text(`Class Advisor`, 15, 195);
+    doc.save(`no_due_form.pdf`);
+  }
+  
+
 }

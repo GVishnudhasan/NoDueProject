@@ -9,6 +9,7 @@ import { FacultySignupComponent } from './components/faculty-signup/faculty-sign
 import { StudentBoardComponent } from './components/student-board/student-board.component';
 import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
 import { AdminBoardComponent } from './components/admin-board/admin-board.component';
+import { CourseModalComponent } from './components/course-modal/course-modal.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'admin-board',
     component: AdminBoardComponent,
+  },
+  {
+    path: 'add-course',
+    component: CourseModalComponent,
   },
   {
     path: '',

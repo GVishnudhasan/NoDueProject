@@ -8,6 +8,7 @@
       <th>Course Name</th>
       <th>Course Code</th>
       <th>Actions</th>
+      <th>Remarks</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,14 @@
           <button class="approve-button" (click)="approveRequest(request)">Approve</button>
           <button class="reject-button" (click)="rejectRequest(request)">Reject</button>
         </td>
+        <!-- <td>
+          <input type="text" placeholder="Enter Your Remarks"/>
+        </td> -->
+        <!-- <form name="form" #f="ngForm"> -->
+          <td>
+            <input type="text" name="message" placeholder="Enter Your Remarks" [(ngModel)]="form.message" />
+          </td>
+        <!-- </form> -->
       </tr>
       <tr *ngIf="selectedRequest === request">
         <td colspan="5">

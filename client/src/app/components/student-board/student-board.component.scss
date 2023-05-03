@@ -63,3 +63,39 @@ table {
     cursor: pointer;
   }
   
+  .btn-pending {
+    background-color: orange;
+    color: black;
+  }
+  
+  .btn-approved {
+    background-color: green;
+    color: white;
+  }
+  
+  .btn-rejected {
+    background-color: red;
+    color: white;
+  }
+  
+  .btn-not-requested {
+    background-color: orange;
+    color: white;
+  }
+  
+  .status-pending {
+    color: yellow;
+  }
+  
+  .status-approved {
+    color: green;
+  }
+  
+  .status-rejected {
+    color: red;
+  }
+  
+  .status-not-requested {
+    color: orange;
+  }
+  

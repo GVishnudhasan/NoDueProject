@@ -12,12 +12,13 @@ export class FacultyBoardComponent implements OnInit {
   pendingRequests: any[] = [];
   requestIds: any[] = [];
   selectedRequest: any = null;
+  form: any = { message: '' };
 
   constructor(
     private requestService: RequestService,
     private storageService: StorageService,
     private studentService: StudentService
-  ) {}
+  ) { }
 
   ngOnInit() {
     const id = this.storageService.getUser().id;
@@ -47,6 +48,16 @@ export class FacultyBoardComponent implements OnInit {
         console.log(err);
       },
     });
+    
+    const message = this.form;
+    this.requestService.updateRemarks(request._id, message).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
   rejectRequest(request: any): void {
@@ -61,6 +72,16 @@ export class FacultyBoardComponent implements OnInit {
       error: (err) => {
         console.log(err);
       },
+    });
+
+    const message = this.form;
+    this.requestService.updateRemarks(request._id, message).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
     });
   }
 

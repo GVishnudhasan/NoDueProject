@@ -1,1 +1,76 @@
-<p>admin-board works!</p>
+<h1>Admin Board</h1>
+
+<!-- Students table -->
+<h2>Students</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.regno }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.year }}</td>
+      <td>
+        <button (click)="deleteStudent(student._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="addStudent()">Add Student</button>
+
+<!-- Faculties table -->
+<h2>Faculties</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let faculty of faculties">
+      <td>{{ faculty.facultyid }}</td>
+      <td>{{ faculty.name }}</td>
+      <td>{{ faculty.department }}</td>
+      <td>
+        <button (click)="deleteFaculty(faculty._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="addFaculty()">Add Faculty</button>
+
+<!-- Courses table -->
+<h2>Courses</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Course Code</th>
+      <th>Department</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{ course.course_name }}</td>
+      <td>{{ course.course_code }}</td>
+      <td>{{ course.department }}</td>
+      <td>
+        <button (click)="deleteCourse(course._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="addCourse()">Add Course</button>

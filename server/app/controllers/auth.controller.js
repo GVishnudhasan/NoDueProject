@@ -3,6 +3,7 @@ const db = require("../models");
 const Student = db.student;
 const Faculty = db.faculty;
 const Role = db.role;
+const Admin = db.admin;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -210,35 +211,53 @@ exports.signin = (req, res) => {
             roles: authorities,
           });
         } else {
-          return res.status(404).send({ message: "User Not found." });
+          Admin.findOne({
+            email: req.body.email,
+          }).populate("roles", "-__v").exec((err, admin) => {
+            if (err) {
+              res.status(500).send({ message: err });
+              return;
+            }
+
+            if (admin) {
+              var passwordIsValid = bcrypt.compareSync(
+                req.body.password,
+                admin.password
+              );
+
+              if (!passwordIsValid) {
+                return res.status(401).send({ message: "Invalid Password!" });
+              }
+
+              var token = jwt.sign({ id: admin.id }, config.secret, {
+                expiresIn: 86400, // 24 hours
+              });
+
+              var authorities = [];
+              for (let i = 0; i < admin.roles.length; i++) {
+                authorities.push("ROLE_" + admin.roles[i].name.toUpperCase());
+              }
+
+              req.session.token = token;
+
+              return res.status(200).send({
+                id: admin._id,
+                name: admin.name,
+                facultyid: admin.facultyid,
+                email: admin.email,
+                department: admin.department,
+                designation: admin.designation,
+                roles: authorities,
+              });
+            } else {
+              return res.status(404).send({ message: "User Not found." });
+            }
+          });
         }
       });
     }
   });
-};
-
-exports.getFaculty = async (req, res) => {
-  try {
-    const facultyId = req.params.id;
-    const faculty = await Faculty.findById(facultyId);
-    res.status(200).send(faculty);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: err.message });
-  }
-};
-
-exports.getStudent = async (req, res) => {
-  try {
-    const studentId = req.params.id;
-    const student = await Student.findById(studentId);
-    res.status(200).send(student);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: err.message });
-  }
-};
-
+}
 
 exports.signout = async (req, res) => {
   try {

@@ -6,6 +6,7 @@
       <th>Handling Faculty</th>
       <th>No Due Request</th>
       <th>Status</th>
+      <th>Remarks</th>
     </tr>
   </thead>
   <tbody>
@@ -15,14 +16,34 @@
         <td>{{subject.handlingFaculty}}</td>
         <td *ngIf="!subject.handlingFaculty">N/A</td>
         <td>
-          <button (click)="onSubmit(subject._id)" [disabled]="subject.status === 'approved' || subject.status === 'pending'">Request No Due</button>
+          <button
+            [disabled]="subject.status === 'approved' || subject.status === 'pending' || subject.status === 'rejected'"
+            [ngClass]="{
+              'btn-pending': subject.status === 'pending',
+              'btn-approved': subject.status === 'approved',
+              'btn-rejected': subject.status === 'rejected',
+              'btn-not-requested': subject.status === 'Not requested'
+            }" (click)="onSubmit(subject._id)">
+            Request No Due
+          </button>
         </td>
         <td>
-          <span *ngIf="subject.status">{{ subject.status }}</span>
+          <span [ngClass]="{
+              'status-pending': subject.status === 'pending',
+              'status-approved': subject.status === 'approved',
+              'status-rejected': subject.status === 'rejected',
+              'status-not-requested': subject.status === 'Not requested'
+            }">
+            {{ subject.status }}
+          </span>
           <span *ngIf="!subject.status">-</span>
         </td>
+        <td>{{subject.remarks}}</td>
       </tr>
     </ng-container>
+
+    <button (click)="downloadNoDueForm()">Download No Due Form</button>
+
     <ng-container *ngIf="!subjects || subjects.length === 0">
       <tr>
         <td colspan="4">No data available</td>
@@ -30,3 +51,5 @@
     </ng-container>
   </tbody>
 </table>
+
+<!-- <button (click)="requestHoDSignature()" [disabled]="!isHoDButtonEnabled()">Request HoD Signature</button> -->

@@ -22,6 +22,9 @@ const RequestSchema = mongoose.model("Requests",
             enum: ['pending', 'approved', 'rejected'],
             default: 'pending',
         },
+        remarks: {
+            type: String,
+        },
     })
 );
 
