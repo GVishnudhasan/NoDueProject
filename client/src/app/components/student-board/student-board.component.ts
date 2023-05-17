@@ -6,6 +6,7 @@ import { FacultyService } from 'src/app/services/faculty.service';
 import { StudentService } from 'src/app/services/student.service';
 import jsPDF from 'jspdf';
 import autoTable from "jspdf-autotable";
+import Swal from 'sweetalert2';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -44,6 +45,7 @@ export class StudentBoardComponent implements OnInit {
           // Use forkJoin to make multiple HTTP requests in parallel
           this.facultyService.getFaculty(facultyId).subscribe({
             next: (facultyData: any) => {
+              console.log("Faculties:", facultyData);
               // Push the handling faculty name to the array with the corresponding subject id
               this.handlingFacultyNames.push({
                 subjectId: subject._id,
@@ -98,6 +100,7 @@ export class StudentBoardComponent implements OnInit {
   }
 
   onSubmit(subjectId: String) {
+    
     const studentId = this.storageService.getUser().id;
     const course = this.subjects.find((c) => c._id === subjectId);
     if (!course) {
@@ -108,6 +111,7 @@ export class StudentBoardComponent implements OnInit {
     const courseId = course._id;
     const facultyId = course.handlingFacultyName;
     console.log(courseId, studentId, facultyId);
+    Swal.fire("Request Sent!",'The Request has been sent to the faculty successfully','success')
 
     this.requestService.requestNoDue(courseId, studentId, facultyId).subscribe({
       next: (data: any) => {

@@ -8,6 +8,9 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-faculty-signup',
@@ -20,7 +23,7 @@ export class FacultySignupComponent implements OnInit {
     'Assistant Professor',
     'Associate Professor',
     'Head of the Department',
-    'Director'
+    'Director',
   ];
 
   form: any = {
@@ -37,7 +40,12 @@ export class FacultySignupComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -69,6 +77,13 @@ export class FacultySignupComponent implements OnInit {
           console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          Swal.fire('Success!', 'Faculty Added Successfully', 'success');
+          const roles = this.storageService.getUser().roles;
+
+          if (roles.includes('ROLE_ADMIN')) {
+            this.router.navigate(['/admin-board']);
+          }
+          this.router.navigate(['/admin-board']);
         },
         error: (err) => {
           console.log(err);

@@ -1,45 +1,50 @@
-label {
-    display: block;
-    margin-top: 10px;
-  }
+.outer{ 
+  height:100vh;
+  background-color:aqua; 
+} 
+.card-heading{
+  text-align: center;
+  margin-bottom: 10px; 
+  text-decoration-color: red;
+} 
+.btn{
+width: 320px;
+height: 45px;
+background-color: #162938;
+border: none;
+outline: none;
+border-radius: 6px;
+cursor: pointer;
+font-size: 1em;
+color: white;
+font-weight: 500; 
+} 
+
+.card{
+  min-height: 60px; 
+  min-width: 50;
+  border-radius: 0px;
+  margin-top: 100px; 
   
-  .card-container.card {
-    max-width: 400px !important;
-    padding: 40px 40px;
-  
-  } 
-  
-  .card {
-    background-color: rgb(247, 247, 247);
-    padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    border-radius: 20px;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
-      top: 50px;
-    }
-    .input-type{
-        width: 500px;
-    }
-  
-    .profile-img-card {
-      width: 96px;
-      height: 96px;
-      margin: 0 auto 10px;
-      display: block;
-      -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-  }
-  
-  .btn {
-    width: 320px;
-    height: 45px;
-    background-color: #162938;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: white;
-    font-weight: 500;
-  }
+} 
+
+.input-field{
+  border-radius: 5px;
+  padding:10px;
+  display:flex;
+  align-items: center;
+  cursor:pointer;
+  border: 1px solid #ddd;
+  color:#4343ff;
+}
+.input-field.error{
+  border:1px solid red;
+  color:red;
+} 
+
+input[type='text']{
+  border:none;
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+} 

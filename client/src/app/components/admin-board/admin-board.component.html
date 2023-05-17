@@ -1,7 +1,11 @@
-<h1>Admin Board</h1>
+
+<hr><h1>Admin Dashboard</h1>
+<p>Welcome {{name}}</p><hr>
 
 <!-- Students table -->
 <h2>Students</h2>
+<button (click)="addStudent()">Add Student</button>
+<hr>
 <table>
   <thead>
     <tr>
@@ -23,10 +27,10 @@
   </tbody>
 </table>
 
-<button (click)="addStudent()">Add Student</button>
-
 <!-- Faculties table -->
+<hr>
 <h2>Faculties</h2>
+<hr>
 <table>
   <thead>
     <tr>
@@ -51,7 +55,9 @@
 <button (click)="addFaculty()">Add Faculty</button>
 
 <!-- Courses table -->
+<hr>
 <h2>Courses</h2>
+<hr>
 <table>
   <thead>
     <tr>

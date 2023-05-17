@@ -18,7 +18,7 @@
       </div>
       <div class="form-group">
         <label for="course_code">Course Code</label>
-        <input type="text" class="form-control" name="course_code" [(ngModel)]="form.course_code" required minlength="8"
+        <input type="text" class="form-control" name="course_code" [(ngModel)]="form.course_code" required minlength="6"
           #course_code="ngModel" [ngClass]="{ 'is-invalid': f.submitted && course_code.errors }" />
         <div class="invalid-feedback" *ngIf="course_code.errors && f.submitted">
           <div *ngIf="course_code.errors['required']">Course Code is required</div>
@@ -63,9 +63,9 @@
           <option *ngFor="let faculty of faculties" [value]="faculty._id">{{faculty.name}}</option>
         </select>
       </fieldset>
-
+      <br>
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">Add</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">

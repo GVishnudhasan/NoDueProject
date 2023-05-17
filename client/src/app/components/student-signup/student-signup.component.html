@@ -84,16 +84,11 @@
         <div class="form-group">
           <button class="btn btn-primary btn-block">Sign Up</button>
           <div class="text center pt-4 "> Already have an Account ? <a id ="forget" href="/login">Login</a></div>
-
         </div>
   
         <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
           Signup failed!<br />{{ errorMessage }}
         </div>
       </form>
-  
-      <div class="alert alert-success" *ngIf="isSuccessful">
-        Your registration is successful!
-      </div>
     </div>
   </div>

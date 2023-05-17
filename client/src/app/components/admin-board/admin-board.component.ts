@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-board',
@@ -13,48 +14,66 @@ export class AdminBoardComponent implements OnInit {
     private adminService: AdminService,
     private storageService: StorageService,
     private router: Router
-  ) { }
+  ) {}
 
   students: any[] = [];
   faculties: any[] = [];
   courses: any[] = [];
+  name: string = '';
 
   ngOnInit(): void {
+    this.name = this.storageService.getUser().name;
     const dept = this.storageService.getUser().department;
 
     this.adminService.getStudents(dept).subscribe({
       next: (data: any) => {
         this.students = data;
-        console.log(data)
-      }
-    })
+        console.log(data);
+      },
+    });
 
     this.adminService.getCourses(dept).subscribe({
       next: (data: any) => {
         this.courses = data;
-        console.log(data)
-      }
-    })
+        console.log(data);
+      },
+    });
 
     this.adminService.getFaculties(dept).subscribe({
       next: (data: any) => {
         this.faculties = data;
-        console.log(data)
-      }
-    })
-
+        console.log(data);
+      },
+    });
   }
 
   deleteStudent(student: any): void {
-    this.adminService.deleteStudent(student).subscribe({
-      next: (data) => {
-        console.log(data);
-        // Do something on success
-      },
-      error: (err) => {
-        console.log(err);
-        // Do something on error
-      },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'The student has been removed from the Database.',
+          'error'
+        );
+      }
+      this.adminService.deleteStudent(student).subscribe({
+        next: (data) => {
+          console.log(data);
+          // Do something on success
+        },
+        error: (err) => {
+          console.log(err);
+          // Do something on error
+        },
+      });
     });
   }
 
@@ -67,15 +86,28 @@ export class AdminBoardComponent implements OnInit {
   }
 
   deleteFaculty(faculty: any): void {
-    this.adminService.deleteFaculty(faculty).subscribe({
-      next: (data) => {
-        console.log(data);
-        // Do something on success
-      },
-      error: (err) => {
-        console.log(err);
-        // Do something on error
-      },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'The faculty has been deleted.', 'error');
+        this.adminService.deleteFaculty(faculty).subscribe({
+          next: (data) => {
+            console.log(data);
+            // Do something on success
+          },
+          error: (err) => {
+            console.log(err);
+            // Do something on error
+          },
+        });
+      }
     });
   }
 
@@ -84,15 +116,28 @@ export class AdminBoardComponent implements OnInit {
   }
 
   deleteCourse(course: any): void {
-    this.adminService.deleteCourse(course).subscribe({
-      next: (data) => {
-        console.log(data);
-        // Do something on success
-      },
-      error: (err) => {
-        console.log(err);
-        // Do something on error
-      },
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'The Course has been deleted.', 'error');
+        this.adminService.deleteCourse(course).subscribe({
+          next: (data) => {
+            console.log(data);
+            // Do something on success
+          },
+          error: (err) => {
+            console.log(err);
+            // Do something on error
+          },
+        });
+      }
     });
   }
 }

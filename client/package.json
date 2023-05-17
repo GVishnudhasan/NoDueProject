@@ -23,6 +23,8 @@
     "jspdf-autotable": "^3.5.28",
     "ngx-toastr": "^16.1.0",
     "rxjs": "~7.5.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -31,6 +33,8 @@
     "@angular/cli": "~15.2.6",
     "@angular/compiler-cli": "^15.2.7",
     "@types/jasmine": "~4.0.0",
+    "@types/jest": "^29.5.1",
+    "@types/mocha": "^10.0.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

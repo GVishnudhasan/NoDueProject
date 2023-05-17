@@ -8,6 +8,9 @@ import {
   Validators,
   NgForm,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-signup',
@@ -19,23 +22,29 @@ export class StudentSignupComponent implements OnInit {
   Semester: any[] = ['Odd', 'Even'];
   Year: any[] = ['1', '2', '3', '4'];
 
-  Departments: any[] = ["CSE", "IT", "ECE", "EEE", "MECH", "BME"];
+  Departments: any[] = ['CSE', 'IT', 'ECE', 'EEE', 'MECH', 'BME'];
 
   form: any = {
-    name: "",
-    regno: "",
-    email: "",
-    department: "",
-    year: "",
-    semester: "",
-    password: ""
+    name: '',
+    regno: '',
+    email: '',
+    department: '',
+    year: '',
+    semester: '',
+    password: '',
   };
 
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  roles: string[] = [];
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -52,6 +61,12 @@ export class StudentSignupComponent implements OnInit {
           console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          Swal.fire('Success!', 'Student Added Successfully', 'success');
+          this.roles = this.storageService.getUser().roles;
+
+          if (this.roles.includes('ROLE_ADMIN')) {
+            this.router.navigate(['/admin-board']);
+          }
         },
         error: (err) => {
           console.log(err);

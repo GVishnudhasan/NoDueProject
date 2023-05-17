@@ -78,15 +78,15 @@ function initial() {
         console.log("added 'student' to roles collection");
       });
 
-      new Role({
-        name: "hod"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
+      // new Role({
+      //   name: "hod"
+      // }).save(err => {
+      //   if (err) {
+      //     console.log("error", err);
+      //   }
 
-        console.log("added 'hod' to roles collection");
-      });
+      //   console.log("added 'hod' to roles collection");
+      // });
 
       new Role({
         name: "faculty"

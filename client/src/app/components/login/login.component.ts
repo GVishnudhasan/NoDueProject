@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -44,16 +45,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const { email, password } = this.form;
-
     this.authService.login(email, password).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        Swal.fire("Thank You...",'Login Successfully','success')
         this.roles = this.storageService.getUser().roles;
-        // this.reloadPage();
-        console.log(this.roles);
+        
         if (this.roles.includes('ROLE_ADMIN')) {
           this.router.navigate(['/admin-board']);
         } else if (this.roles.includes('ROLE_FACULTY')) {

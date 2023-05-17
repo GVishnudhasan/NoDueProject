@@ -11,6 +11,7 @@ db.role = require("./role.model");
 db.courses = require("./courses.model");
 db.requests = require("./requests.model");
 db.admin = require("./admin.model");
+db.reset_token = require("./reset-token.model");
 
 db.ROLES = ["student", "faculty", "hod", "admin"];
 
