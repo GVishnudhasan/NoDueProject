@@ -1,5 +1,5 @@
 {
-  "name": "node-js-jwt-auth-mongodb",
+  "name": "no-due-management-system",
   "version": "1.0.0",
   "description": "Node.js + MongoDB: JWT Authentication & Authorization",
   "main": "server.js",
@@ -18,7 +18,7 @@
     "mongodb",
     "mongoose"
   ],
-  "author": "bezkoder",
+  "author": "vishnudhasan",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

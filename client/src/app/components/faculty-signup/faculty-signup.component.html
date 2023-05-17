@@ -39,6 +39,42 @@
                     </div>
                 </div>
             </div>
+<div class="col-md-12">
+    <div class="card card-container">
+        <div class="panel heading">
+            <h3 class=" text-center pt-3 font-weight-bold">SignUp</h3>
+        </div>
+        <div class="form-group">
+            <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input formControlName="name" type="text" placeholder="Name">
+                    </div>
+                </div>
+                <small *ngIf="form.controls['name'].dirty && form.hasError('required','name')" class="text-danger">*Name
+                    is required
+                </small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input formControlName="facultyid" type="text" placeholder="Faculty ID">
+                    </div>
+                </div>
+                <small *ngIf="form.controls['facultyid'].dirty && form.hasError('required','facultyid')"
+                    class="text-danger">*Faculty ID is required
+                </small>
+
+                <div class="form-group pt-3">
+                    <div class="input-field">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <input formControlName="email" type="text" placeholder="Email">
+                    </div>
+                </div>
+                <small *ngIf="form.controls['email'].dirty && form.hasError('required','email')"
+                    class="text-danger">*Email is required
+                </small>
 
             <div class="form-group">
                 <label for="dateOfJoining">Date of Joining</label>
