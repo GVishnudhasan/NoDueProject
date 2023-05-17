@@ -10,6 +10,7 @@ import { StudentBoardComponent } from './components/student-board/student-board.
 import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
 import { AdminBoardComponent } from './components/admin-board/admin-board.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
+import { AdminGuard } from './helpers/admin.guard';
 
 const routes: Routes = [
   {
@@ -19,10 +20,14 @@ const routes: Routes = [
   {
     path: 'student-signup',
     component: StudentSignupComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_STUDENT' },
   },
   {
     path: 'selector',
     component: SelectorComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
     path: 'request-reset',
@@ -35,22 +40,32 @@ const routes: Routes = [
   {
     path: 'faculty-signup',
     component: FacultySignupComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
     path: 'student-board',
     component: StudentBoardComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_STUDENT' },
   },
   {
     path: 'faculty-board',
     component: FacultyBoardComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_FACULTY' },
   },
   {
     path: 'admin-board',
     component: AdminBoardComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
     path: 'add-course',
     component: CourseModalComponent,
+    canActivate: [AdminGuard],
+    data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
     path: '',
