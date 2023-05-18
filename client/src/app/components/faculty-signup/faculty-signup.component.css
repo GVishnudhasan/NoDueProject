@@ -9,6 +9,7 @@ label {
 .card-container.card {
   max-width: 400px !important;
   padding: 40px 40px;
+  top: 260px;
 }
 
 .card {
@@ -78,4 +79,52 @@ label {
   font-size: 1em;
   color: white;
   font-weight: 500;
+}
+
+/* styles.css */
+.img-responsive {
+  display: flex;
+  position: absolute;
+  height: 150px;
+  align-items: center;
+  width: 80%;
+  left: 90px;
+}
+
+.desktop-header {
+  display: block; /* Show the desktop header image */
+}
+
+.mobile-header {
+  display: none; /* Hide the mobile header image by default */
+}
+
+h2 {
+  text-align: center;
+  color: #162938;
+  font-size: 2.5em;
+  font-weight: 500;
+  top: 170px;
+  margin-bottom: 10px;
+  position: relative; /* Add position: relative to h2 */
+}
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 600px) {
+  .desktop-header {
+    display: none; /* Hide the desktop header image for mobile */
+  }
+
+  .mobile-header {
+    left: 20%;
+    transform: translateX(-25%);
+    display: flex;
+    max-width: 280px;
+    top: 20%;
+    transform: translateY(-20%);
+  }
+
+  h2 {
+    top: 267px; /* Adjust the top value for mobile view */
+  }
 }

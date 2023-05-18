@@ -84,8 +84,8 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.storageService.clean();
-
         window.location.reload();
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         console.log(err);

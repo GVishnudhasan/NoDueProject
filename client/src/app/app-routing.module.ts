@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'student-signup',
     component: StudentSignupComponent,
     canActivate: [AdminGuard],
-    data: { expectedRole: 'ROLE_STUDENT' },
+    data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
     path: 'selector',
@@ -68,7 +68,7 @@ const routes: Routes = [
     data: { expectedRole: 'ROLE_ADMIN' },
   },
   {
-    path: '',
+    path: ' ',
     redirectTo: 'login',
     pathMatch: 'full',
   },

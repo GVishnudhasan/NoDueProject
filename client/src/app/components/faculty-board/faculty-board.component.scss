@@ -50,3 +50,39 @@ tr:nth-child(even) td {
   cursor: pointer;
   color: blue;
 }
+
+.navbar {
+  background-color: #484747;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fefefe;
+}
+
+.navbar-items {
+  display: flex;
+  gap: 10px;
+}
+
+.profile {
+  font-weight: bold;
+}
+
+.logout button {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background-color: #5a6268;
+}

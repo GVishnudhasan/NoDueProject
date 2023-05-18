@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { StudentService } from 'src/app/services/student.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,14 +16,18 @@ export class FacultyBoardComponent implements OnInit {
   requestIds: any[] = [];
   selectedRequest: any = null;
   form: any = { message: '' };
+  name: String = '';
 
   constructor(
     private requestService: RequestService,
     private storageService: StorageService,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.name = this.storageService.getUser().name;
     const id = this.storageService.getUser().id;
     console.log(this.storageService.getUser(), id);
     this.requestService.getPendingRequests(id).subscribe({
@@ -114,5 +120,19 @@ export class FacultyBoardComponent implements OnInit {
 
   onSelect(request: any): void {
     this.selectedRequest = this.selectedRequest === request ? null : request;
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.storageService.clean();
+        this.router.navigate(['/login']);
+        // window.location.reload();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

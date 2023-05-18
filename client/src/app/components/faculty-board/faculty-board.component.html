@@ -1,3 +1,14 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    Faculty Dashboard
+  </div>
+  <div class="navbar-items">
+    Welcome {{ name }}
+    <div class="logout">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
 <h2>Faculty Board</h2>
 
 <table>
@@ -26,9 +37,9 @@
           <input type="text" placeholder="Enter Your Remarks"/>
         </td> -->
         <!-- <form name="form" #f="ngForm"> -->
-          <td>
-            <input type="text" name="message" placeholder="Enter Your Remarks" [(ngModel)]="form.message" />
-          </td>
+        <td>
+          <input type="text" name="message" placeholder="Enter Your Remarks" [(ngModel)]="form.message" />
+        </td>
         <!-- </form> -->
       </tr>
       <tr *ngIf="selectedRequest === request">

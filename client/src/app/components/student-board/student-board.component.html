@@ -1,4 +1,18 @@
-<h1>Dashboard</h1>
+<nav class="navbar">
+  <div class="navbar-brand">
+    Student Dashboard
+  </div>
+  <div class="navbar-items">
+    Welcome {{ name }}
+    <div class="logout">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<hr>
+<h1 style="text-align: center;">You're one step away from getting your No Dues!</h1>
+<hr>
 <table>
   <thead>
     <tr>
@@ -42,7 +56,11 @@
       </tr>
     </ng-container>
 
-    <button (click)="downloadNoDueForm()">Download No Due Form</button>
+    <!-- <button class="download-btn" (click)="downloadNoDueForm()" [disabled]="!isDownloadButtonEnabled()">Download No Due Form</button> -->
+    <div class="center">
+      <button (click)="downloadNoDueForm()" [disabled]="!isDownloadButtonEnabled()">Download No Due
+        Form</button>
+    </div>
 
     <ng-container *ngIf="!subjects || subjects.length === 0">
       <tr>

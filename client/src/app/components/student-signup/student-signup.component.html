@@ -1,94 +1,103 @@
+<marquee behavior="" direction="">
+  <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
+</marquee>
+<header>
+  <img src="./assets/header_image.png" alt="" class="img-responsive desktop-header">
+  <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header">
+</header>
 <div class="col-md-12">
-    <div class="card card-container">
-      <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
-      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required minlength="3"
-            maxlength="20" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.errors }" />
-          <div class="invalid-feedback" *ngIf="name.errors && f.submitted">
-            <div *ngIf="name.errors['required']">Name is required</div>
-            <div *ngIf="name.errors['minlength']">
-              Name must be at least 3 characters
-            </div>
-            <div *ngIf="name.errors['maxlength']">
-              Name must be at most 20 characters
-            </div>
+  <h2>No Due Management System</h2>
+  <div class="card card-container">
+    <h1 style="text-align: center;">Student Sign Up</h1>
+    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" required minlength="3"
+          maxlength="20" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.errors }" />
+        <div class="invalid-feedback" *ngIf="name.errors && f.submitted">
+          <div *ngIf="name.errors['required']">Name is required</div>
+          <div *ngIf="name.errors['minlength']">
+            Name must be at least 3 characters
+          </div>
+          <div *ngIf="name.errors['maxlength']">
+            Name must be at most 20 characters
           </div>
         </div>
-        <div class="form-group">
-          <label for="rollno">Register Number</label>
-          <input type="text" class="form-control" name="regno" [(ngModel)]="form.regno" required minlength="9"
-            #regno="ngModel" [ngClass]="{ 'is-invalid': f.submitted && regno.errors }" />
-          <div class="invalid-feedback" *ngIf="regno.errors && f.submitted">
-            <div *ngIf="regno.errors['required']">Roll Number is required</div>
-            <div *ngIf="regno.errors['minlength']">
-              Roll Number must be at least 9 characters
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="rollno">Register Number</label>
+        <input type="text" class="form-control" name="regno" [(ngModel)]="form.regno" required minlength="9"
+          #regno="ngModel" [ngClass]="{ 'is-invalid': f.submitted && regno.errors }" />
+        <div class="invalid-feedback" *ngIf="regno.errors && f.submitted">
+          <div *ngIf="regno.errors['required']">Roll Number is required</div>
+          <div *ngIf="regno.errors['minlength']">
+            Roll Number must be at least 9 characters
           </div>
         </div>
-  
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"
-            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
-          <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors['required']">Email is required</div>
-            <div *ngIf="email.errors['email']">
-              Email must be a valid email address
-            </div>
-          </div>
-        </div>
-  
-        <fieldset class="form-group">
-          <label for="department">Department</label>
-          <select class="form-control" [(ngModel)]="form.department" #department="ngModel" [ngModelOptions]="{standalone: true}"
-            [ngClass]="{ 'is-invalid': f.submitted && department.errors }">
-            <option disabled>--Select--</option>
-            <option *ngFor="let category of Departments" [value]="category">{{category}}</option>
-          </select>
-        </fieldset>
+      </div>
 
-        <fieldset class="form-group">
-          <label for="year">Year</label>
-          <select class="form-control" [(ngModel)]="form.year" #year="ngModel" [ngModelOptions]="{standalone: true}"
-            [ngClass]="{ 'is-invalid': f.submitted && year.errors }">
-            <option disabled>--Select--</option>
-            <option *ngFor="let category of Year" [value]="category">{{category}}</option>
-          </select>
-        </fieldset>
-
-        <fieldset class="form-group">
-          <label for="semester">Semester</label>
-          <select class="form-control" [(ngModel)]="form.semester" #semester="ngModel" [ngModelOptions]="{standalone: true}"
-            [ngClass]="{ 'is-invalid': f.submitted && semester.errors }">
-            <option disabled>--Select--</option>
-            <option *ngFor="let category of Semester" [value]="category">{{category}}</option>
-          </select>
-        </fieldset>
-  
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
-            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
-          <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
-            <div *ngIf="password.errors['required']">Password is required</div>
-            <div *ngIf="password.errors['minlength']">
-              Password must be at least 6 characters
-            </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+        <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors['required']">Email is required</div>
+          <div *ngIf="email.errors['email']">
+            Email must be a valid email address
           </div>
         </div>
+      </div>
 
-        <br>
-        
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
-          <div class="text center pt-4 "> Already have an Account ? <a id ="forget" href="/login">Login</a></div>
+      <fieldset class="form-group">
+        <label for="department">Department</label>
+        <select class="form-control" [(ngModel)]="form.department" #department="ngModel"
+          [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && department.errors }">
+          <option disabled>--Select--</option>
+          <option *ngFor="let category of Departments" [value]="category">{{category}}</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="year">Year</label>
+        <select class="form-control" [(ngModel)]="form.year" #year="ngModel" [ngModelOptions]="{standalone: true}"
+          [ngClass]="{ 'is-invalid': f.submitted && year.errors }">
+          <option disabled>--Select--</option>
+          <option *ngFor="let category of Year" [value]="category">{{category}}</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <label for="semester">Semester</label>
+        <select class="form-control" [(ngModel)]="form.semester" #semester="ngModel"
+          [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && semester.errors }">
+          <option disabled>--Select--</option>
+          <option *ngFor="let category of Semester" [value]="category">{{category}}</option>
+        </select>
+      </fieldset>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+          #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+        <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
         </div>
-  
-        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-          Signup failed!<br />{{ errorMessage }}
-        </div>
-      </form>
-    </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+        <!-- <div class="text center pt-4 "> Already have an Account ? <a id="forget" href="/login">Login</a></div> -->
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
   </div>
+</div>

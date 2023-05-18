@@ -1,10 +1,20 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    Admin Dashboard
+  </div>
+  <div class="navbar-items">
+      Welcome {{ name }}
+    <div class="logout">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
 
 <hr><h1>Admin Dashboard</h1>
 <p>Welcome {{name}}</p><hr>
 
 <!-- Students table -->
 <h2>Students</h2>
-<button (click)="addStudent()">Add Student</button>
 <hr>
 <table>
   <thead>
@@ -26,6 +36,8 @@
     </tr>
   </tbody>
 </table>
+
+<button (click)="addStudent()">Add Student</button>
 
 <!-- Faculties table -->
 <hr>

@@ -1,5 +1,13 @@
+<marquee behavior="" direction="">
+  <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
+</marquee>
+<header>
+  <img src="./assets/header_image.png" alt="" class="img-responsive desktop-header">
+  <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header">
+</header>
 <div class="col-md-12">
   <div class="card card-container">
+    <h1 style="text-align: center;">Add Course</h1>
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
@@ -30,8 +38,8 @@
 
       <fieldset class="form-group">
         <label for="department">Department</label>
-        <select class="form-control" [(ngModel)]="form.department" #department="ngModel" [ngModelOptions]="{standalone: true}"
-          [ngClass]="{ 'is-invalid': f.submitted && department.errors }">
+        <select class="form-control" [(ngModel)]="form.department" #department="ngModel"
+          [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && department.errors }">
           <option disabled>--Select--</option>
           <option *ngFor="let category of Branches" [value]="category">{{category}}</option>
         </select>
@@ -48,8 +56,8 @@
 
       <fieldset class="form-group">
         <label for="semester">Semester</label>
-        <select class="form-control" [(ngModel)]="form.semester" #semester="ngModel" [ngModelOptions]="{standalone: true}"
-          [ngClass]="{ 'is-invalid': f.submitted && semester.errors }">
+        <select class="form-control" [(ngModel)]="form.semester" #semester="ngModel"
+          [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && semester.errors }">
           <option disabled>--Select--</option>
           <option *ngFor="let category of Semester" [value]="category">{{category}}</option>
         </select>
