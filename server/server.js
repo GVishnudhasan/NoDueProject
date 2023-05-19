@@ -13,7 +13,7 @@ const cookie_secret = process.env.COOKIE_SECRET;
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:4200",
+  origin: "https://no-due-ksriet.netlify.app",
   credentials: true,
 };
 
