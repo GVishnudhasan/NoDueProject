@@ -80,8 +80,9 @@ export class LoginComponent implements OnInit {
   }
 
   goto(){
-    console.log(this.roles[0], this.roles[0].split('_')[1].toLowerCase());
-    const role = this.roles[0].split('_')[1].toLowerCase();
+    const user_role = this.storageService.getUser().roles;
+    console.log(user_role[0], user_role[0].split('_')[1].toLowerCase());
+    const role = user_role[0].split('_')[1].toLowerCase();
     this.router.navigate([`/${role}-board`]);
   }
 
