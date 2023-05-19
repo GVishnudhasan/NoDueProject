@@ -21,6 +21,7 @@
   "author": "vishnudhasan",
   "license": "ISC",
   "dependencies": {
+    "nodemon":"^2.0.22",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
