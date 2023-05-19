@@ -1,4 +1,3 @@
-const config = require("../config/auth.config");
 const db = require("../models");
 
 const Faculty = db.faculty;
@@ -13,4 +12,3 @@ exports.getFaculty = async (req, res) => {
         res.status(500).send({ message: err.message });
     }
 };
-

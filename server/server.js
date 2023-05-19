@@ -2,7 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 
-const dbConfig = require("./app/config/db.config");
+// const dbConfig = require("./app/config/db.config");
+const dotenv = require('dotenv');
+dotenv.config()
+
+const db_uri = process.env.DB_URI;
+const cookie_secret = process.env.COOKIE_SECRET;
+
 
 const app = express();
 
@@ -22,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cookieSession({
     name: "nodue-session",
-    secret: "COOKIE_SECRET", // should use as secret environment variable
+    secret: cookie_secret, // should use as secret environment variable
     httpOnly: true
   })
 );
@@ -31,7 +37,11 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  // .connect(`${dbConfig.HOST}/${dbConfig.DB}`, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true
+  // })
+  .connect(`${db_uri}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -60,7 +70,7 @@ require("./app/routes/courses.routes")(app);
 require("./app/routes/requests.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

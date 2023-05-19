@@ -1,4 +1,5 @@
-const config = require("../config/auth.config");
+// const config = require("../config/auth.config");
+const dotenv = require("dotenv");
 const db = require("../models");
 const Student = db.student;
 const Faculty = db.faculty;
@@ -7,6 +8,9 @@ const Admin = db.admin;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+dotenv.config({ path: '../../.env' });
+// dotenv.config();
+// console.log(process.env.AUTH_KEY);
 
 exports.studentSignup = (req, res) => {
   const user = new Student({
@@ -149,7 +153,7 @@ exports.signin = (req, res) => {
         return res.status(401).send({ message: "Invalid Password!" });
       }
 
-      var token = jwt.sign({ id: student.id }, config.secret, {
+      var token = jwt.sign({ id: student.id }, process.env.AUTH_KEY, {
         expiresIn: 86400, // 24 hours
       });
 
@@ -189,7 +193,7 @@ exports.signin = (req, res) => {
             return res.status(401).send({ message: "Invalid Password!" });
           }
 
-          var token = jwt.sign({ id: faculty.id }, config.secret, {
+          var token = jwt.sign({ id: faculty.id }, process.env.AUTH_KEY, {
             expiresIn: 86400, // 24 hours
           });
 
@@ -229,7 +233,7 @@ exports.signin = (req, res) => {
                 return res.status(401).send({ message: "Invalid Password!" });
               }
 
-              var token = jwt.sign({ id: admin.id }, config.secret, {
+              var token = jwt.sign({ id: admin.id }, process.env.AUTH_KEY, {
                 expiresIn: 86400, // 24 hours
               });
 

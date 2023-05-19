@@ -1,10 +1,13 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js");
+// const config = require("../config/auth.config.js");
 const db = require("../models");
 const Student = db.student;
 const Faculty = db.faculty;
 const Admin = db.admin;
 const Role = db.role;
+
+const dotenv = require('dotenv');
+dotenv.config({ path: '../../.env' });
 
 verifyToken = (req, res, next) => {
   let token = req.session.token;
@@ -13,7 +16,7 @@ verifyToken = (req, res, next) => {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(token, process.env.AUTH_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
     }
