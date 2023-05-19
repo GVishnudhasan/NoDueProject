@@ -52,6 +52,8 @@
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
       Logged in as {{ name }}.
+      Go to Dashboard <a routerLink="/student-board">here</a>.
+      Logout <a (click)="logout()">here</a>.
     </div>
   </div>
 </div>
