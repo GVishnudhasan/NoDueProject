@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
   }
 
   goto(){
-    const role = this.roles[0].slice(5).toLowerCase();
+    const role = this.roles[0].split('_')[1].toLowerCase();
     this.router.navigate([`/${role}-board`]);
   }
 
