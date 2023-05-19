@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const FACULTY_API = 'http://localhost:8080/api/faculty';
+const FACULTY_API = 'https://nodue-backend.onrender.com/api/faculty';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

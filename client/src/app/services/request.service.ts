@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const REQUEST_API = 'http://localhost:8080/api/';
-const GET_REQUESTS_API = 'http://localhost:8080/api/display-pending';
+const REQUEST_API = 'https://nodue-backend.onrender.com/api/';
+const GET_REQUESTS_API = 'https://nodue-backend.onrender.com/api/display-pending';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };

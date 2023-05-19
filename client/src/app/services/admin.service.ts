@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const ADMIN_API = 'http://localhost:8080/admin';
+const ADMIN_API = 'https://nodue-backend.onrender.com/admin';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

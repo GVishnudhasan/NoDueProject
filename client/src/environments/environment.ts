@@ -5,7 +5,7 @@
 export const environment = {
   build_version: 'v1.5',
   production: false,
-  appurl: 'http://localhost:8080',
+  appurl: 'https://nodue-backend.onrender.com',
 };
 
 /*
