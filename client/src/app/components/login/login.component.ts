@@ -79,6 +79,11 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
+  goto(){
+    const role = this.roles[0].slice(5).toLowerCase();
+    this.router.navigate([`/${role}-board`]);
+  }
+
   logout(): void {
     this.authService.logout().subscribe({
       next: (res) => {
