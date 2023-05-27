@@ -42,7 +42,7 @@ export class StudentBoardComponent implements OnInit {
     this.coursesService.getCourses(dept, year, sem).subscribe({
       next: (data: any) => {
         this.subjects = data;
-        console.log(this.subjects);
+        // console.log(this.subjects);
 
         // Get handling faculty names for each subject
         for (const subject of this.subjects) {
@@ -51,7 +51,7 @@ export class StudentBoardComponent implements OnInit {
           // Use forkJoin to make multiple HTTP requests in parallel
           this.facultyService.getFaculty(facultyId).subscribe({
             next: (facultyData: any) => {
-              console.log('Faculties:', facultyData);
+              // console.log('Faculties:', facultyData);
               // Push the handling faculty name to the array with the corresponding subject id
               this.handlingFacultyNames.push({
                 subjectId: subject._id,
@@ -68,7 +68,7 @@ export class StudentBoardComponent implements OnInit {
                   this.subjects[i].handlingFaculty = handlingFacultyName;
                 }
               }
-              console.log(this.subjects);
+              // console.log(this.subjects);
             },
             error: (err) => {
               console.log(err);
@@ -85,7 +85,7 @@ export class StudentBoardComponent implements OnInit {
               .getRequestStatus(courseId, studentId)
               .subscribe({
                 next: (data: any) => {
-                  console.log(data);
+                  // console.log(data);
                   subject.status = data.status;
                   subject.remarks = data.remarks;
                 },
@@ -132,10 +132,10 @@ export class StudentBoardComponent implements OnInit {
       console.log('Course not found');
       return;
     }
-    console.log(course);
+    // console.log(course);
     const courseId = course._id;
     const facultyId = course.handlingFacultyName;
-    console.log(courseId, studentId, facultyId);
+    // console.log(courseId, studentId, facultyId);
     Swal.fire(
       'Request Sent!',
       'The Request has been sent to the faculty successfully',
@@ -151,7 +151,7 @@ export class StudentBoardComponent implements OnInit {
           this.subjects[subjectIndex].status = data.status;
         }
         this.status = data.status;
-        console.log(this.status, data, data.status);
+        // console.log(this.status, data, data.status);
       },
       error: (err) => {
         console.log(err);
@@ -176,7 +176,7 @@ export class StudentBoardComponent implements OnInit {
     const studentId = this.storageService.getUser().id;
     this.studentService.updateFlag(studentId).subscribe({
       next: (data: any) => {
-        console.log(data);
+        // console.log(data);
       },
       error: (err) => {
         console.log(err);
@@ -226,22 +226,6 @@ export class StudentBoardComponent implements OnInit {
     const startX = (doc.internal.pageSize.width - tableWidth) / 2;
     const startY = 50;
 
-    // autoTable(doc, {
-    //   head: [
-    //     ['Course Name', 'Course Code', 'Handling Faculty', 'Status', 'Remarks'],
-    //   ],
-    //   body: this.subjects.map((subject) => [
-    //     subject.course_name,
-    //     subject.course_code,
-    //     subject.handlingFaculty,
-    //     subject.status,
-    //     subject.remarks,
-    //   ]),
-    //   ...['Library', 'N/A', 'Librarian', '        ', '        '],
-    //   ...['Mentor', 'N/A', '           ', '        ', '        '],
-    //   startY: startY,
-    //   margin: { top: startY + 10 },
-    // });
     autoTable(doc, {
       head: [
         ['Course Name', 'Course Code', 'Handling Faculty', 'Status', 'Remarks'],
