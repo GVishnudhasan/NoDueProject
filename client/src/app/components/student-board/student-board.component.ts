@@ -218,8 +218,8 @@ export class StudentBoardComponent implements OnInit {
     doc.text(`Name: ${name}`, 20, 35);
     doc.text(`Registration No.: ${regNo}`, 125, 35);
     // doc.text(`Department: ${dept}`, 15, 40);
-    doc.text(`Year: ${year}`, 125, 43);
-    doc.text(`Semester: ${sem}`, 20, 43);
+    doc.text(`Semester: ${sem}`, 125, 43);
+    doc.text(`Year: ${year}`, 20, 43);
 
     // Calculate the x and y coordinates for the table to be at the center of the page
     const tableWidth = 160;
