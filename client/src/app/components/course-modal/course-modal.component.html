@@ -13,14 +13,14 @@
       <div class="form-group">
         <label for="course_name">Course Name</label>
         <input type="text" class="form-control" name="course_name" [(ngModel)]="form.course_name" required minlength="3"
-          maxlength="20" #course_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && course_name.errors }" />
+          maxlength="50" #course_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && course_name.errors }" />
         <div class="invalid-feedback" *ngIf="course_name.errors && f.submitted">
           <div *ngIf="course_name.errors['required']">Course course_name is required</div>
           <div *ngIf="course_name.errors['minlength']">
             course_name must be at least 3 characters
           </div>
           <div *ngIf="course_name.errors['maxlength']">
-            course_name must be at most 20 characters
+            course_name must be at most 50 characters
           </div>
         </div>
       </div>
