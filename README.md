@@ -20,6 +20,10 @@ This project is an automated system for requesting and approving no-due certific
 
 Once logged in, students are redirected to a dashboard that displays a list of their subjects and the handling faculty for each subject. Students can request no due certificates from the handling faculty for each subject, and the respective faculty member can approve or reject the request. After all faculty members have approved the request, it is sent to the head of the department (HoD) for final approval. Once the HoD has given their digital signature, the student is approved to write the end-semester exams.
 
+## Project Demo
+
+Check out the project demo on YouTube: [Demo Video](https://www.youtube.com/watch?v=EFDIiGfouYo)
+
 ## Built With
 
 The project uses the MEAN (MongoDB, Express.js, AngularJS, and Node.js) stack for development.
