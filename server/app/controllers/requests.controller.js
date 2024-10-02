@@ -1,4 +1,5 @@
 const db = require('../models');
+const MESSAGES = require('../utils/const');
 const Requests = db.requests;
 const Faculty = db.faculty;
 const Courses = db.courses;
@@ -15,7 +16,7 @@ exports.createRequest = async (req, res) => {
         res.status(201).json(request);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 
@@ -35,7 +36,7 @@ exports.getPendingRequests = async (req, res) => {
                     res.status(500).json({ message: 'Server error' });
                 } else {
                     if (!requests) {
-                        res.status(404).json({ message: 'No pending requests found.' });
+                        res.status(404).json({ message: MESSAGES.REQUEST_NOT_FOUND });
                     } else {
                         res.status(200).json(requests);
                     }
@@ -43,7 +44,7 @@ exports.getPendingRequests = async (req, res) => {
             });
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 
@@ -53,14 +54,14 @@ exports.getRequestStatus = async (req, res) => {
         const studentId = req.params.studentId;
         const request = await Requests.findOne({ courseId, studentId });
         if (!request) {
-            res.status(404).json({ message: 'Request not found' });
+            res.status(404).json({ message: MESSAGES.REQUEST_NOT_FOUND });
         } else {
             const data = { status: request.status, remarks: request.remarks };
             res.json(data);
         }
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 
@@ -76,7 +77,7 @@ exports.approveRequest = async (req, res) => {
         res.json(request);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 
@@ -91,7 +92,7 @@ exports.rejectRequest = async (req, res) => {
         res.json(request);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 
@@ -106,7 +107,7 @@ exports.updateRemarks = async (req, res) => {
         res.json(request);
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: MESSAGES.SERVER_ERROR });
     }
 };
 

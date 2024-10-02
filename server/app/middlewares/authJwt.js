@@ -7,18 +7,19 @@ const Admin = db.admin;
 const Role = db.role;
 
 const dotenv = require('dotenv');
+const MESSAGES = require("../utils/const");
 dotenv.config({ path: '../../.env' });
 
 verifyToken = (req, res, next) => {
   let token = req.session.token;
 
   if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+    return res.status(403).send({ message: MESSAGES.NO_TOKEN_PROVIDED });
   }
 
   jwt.verify(token, process.env.AUTH_KEY, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
+      return res.status(401).send({ message: MESSAGES.UNAUTHORIZED });
     }
     req.userId = decoded.id;
     next();
@@ -49,7 +50,7 @@ isFaculty = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require Faculty Role!" });
+        res.status(403).send({ message: MESSAGES.REQUIRE_FACULTY_ROLE });
         return;
       }
     );
@@ -80,7 +81,7 @@ isHoD = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require HoD Role!" });
+        res.status(403).send({ message: MESSAGES.REQUIRE_HOD_ROLE });
         return;
       }
     );
@@ -111,7 +112,7 @@ isAdmin = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require Admin Role!" });
+        res.status(403).send({ message: MESSAGES.REQUIRE_ADMIN_ROLE });
         return;
       }
     );

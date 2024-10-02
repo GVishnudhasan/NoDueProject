@@ -1,15 +1,16 @@
 const db = require("../models");
 const nodemailer = require('nodemailer');
+const MESSAGES = require("../utils/const");
 const Student = db.student;
 const ResetToken = db.reset_token;
 
 exports.ResetPassword = async (req, res) => {
     if (!req.body.email) {
-        return res.status(500).json({ message: 'Email is required' });
+        return res.status(500).json({ message: MESSAGES.EMAIL_REQUIRED });
     }
     const user = await Student.findOne({ email: req.body.email });
     if (!user) {
-        return res.status(409).json({ message: 'Email does not exist' });
+        return res.status(409).json({ message: MESSAGES.USER_NOT_FOUND });
     }
     const resettoken = new ResetToken({ _studentId: user._id, resettoken: crypto.randomBytes(16).toString('hex') });
     resettoken.save()
@@ -35,7 +36,7 @@ exports.ResetPassword = async (req, res) => {
                     };
                     transporter.sendMail(mailOptions)
                         .then(() => {
-                            res.status(200).json({ message: 'Reset Password successfully.' });
+                            res.status(200).json({ message: MESSAGES.RESET_LINK_SENT });
                         })
                         .catch((err) => {
                             res.status(500).send({ msg: err.message });
