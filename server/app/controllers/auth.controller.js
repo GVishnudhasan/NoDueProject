@@ -1,6 +1,7 @@
 // const config = require("../config/auth.config");
 const dotenv = require("dotenv");
 const db = require("../models");
+const MESSAGES = require("../utils/const");
 const Student = db.student;
 const Faculty = db.faculty;
 const Role = db.role;
@@ -48,7 +49,7 @@ exports.studentSignup = (req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: MESSAGES.USER_REGISTERED_SUCCESSFULLY });
           });
         }
       );
@@ -66,7 +67,7 @@ exports.studentSignup = (req, res) => {
             return;
           }
 
-          res.send({ message: "User was registered successfully!" });
+          res.send({ message: MESSAGES.USER_REGISTERED_SUCCESSFULLY });
         });
       });
     }
@@ -109,7 +110,7 @@ exports.facultySignup = (req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: MESSAGES.USER_REGISTERED_SUCCESSFULLY });
           });
         }
       );
@@ -127,7 +128,7 @@ exports.facultySignup = (req, res) => {
             return;
           }
 
-          res.send({ message: "Faculty was registered successfully!" });
+          res.send({ message: MESSAGES.FACULTY_REGISTERED_SUCCESSFULLY });
         });
       });
     }
@@ -150,7 +151,7 @@ exports.signin = (req, res) => {
       );
 
       if (!passwordIsValid) {
-        return res.status(401).send({ message: "Invalid Password!" });
+        return res.status(401).send({ message: MESSAGES.INVALID_PASSWORD });
       }
 
       var token = jwt.sign({ id: student.id }, process.env.AUTH_KEY, {
@@ -190,7 +191,7 @@ exports.signin = (req, res) => {
           );
 
           if (!passwordIsValid) {
-            return res.status(401).send({ message: "Invalid Password!" });
+            return res.status(401).send({ message: MESSAGES.INVALID_PASSWORD });
           }
 
           var token = jwt.sign({ id: faculty.id }, process.env.AUTH_KEY, {
@@ -230,7 +231,7 @@ exports.signin = (req, res) => {
               );
 
               if (!passwordIsValid) {
-                return res.status(401).send({ message: "Invalid Password!" });
+                return res.status(401).send({ message: MESSAGES.INVALID_PASSWORD });
               }
 
               var token = jwt.sign({ id: admin.id }, process.env.AUTH_KEY, {
@@ -254,7 +255,7 @@ exports.signin = (req, res) => {
                 roles: authorities,
               });
             } else {
-              return res.status(404).send({ message: "User Not found." });
+              return res.status(404).send({ message: MESSAGES.USER_NOT_FOUND });
             }
           });
         }
@@ -266,7 +267,7 @@ exports.signin = (req, res) => {
 exports.signout = async (req, res) => {
   try {
     req.session = null;
-    return res.status(200).send({ message: "You've been signed out!" });
+    return res.status(200).send({ message: MESSAGES.USER_LOGGED_OUT });
   } catch (err) {
     this.next(err);
   }

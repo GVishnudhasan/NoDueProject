@@ -1,5 +1,5 @@
 const db = require('../models');
-
+const MESSAGES = require('../utils/const');
 const Student = db.student;
 
 exports.grantHodSignature = async (req, res) => {
@@ -7,11 +7,11 @@ exports.grantHodSignature = async (req, res) => {
     const studentId = req.params.id;
     const student = await Student.findById(studentId);
     if (!student) {
-      return res.status(404).send({ message: 'Student not found' });
+      return res.status(404).send({ message: MESSAGES.STUDENT_NOT_FOUND });
     }
     student.hodSignature = true;
     await student.save();
-    return res.status(200).send({ message: 'HOD signature granted!' });
+    return res.status(200).send({ message: MESSAGES.HOD_SIGNATURE_GRANTED });
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }

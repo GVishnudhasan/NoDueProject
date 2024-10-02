@@ -1,4 +1,5 @@
 const db = require("../models");
+const MESSAGES = require("../utils/const");
 const ROLES = db.ROLES;
 const Student = db.student;
 const Faculty = db.faculty;
@@ -15,7 +16,7 @@ checkDuplicateUsernameOrEmailforStudent = (req, res, next) => {
     }
 
     if (user) {
-      res.status(400).send({ message: "Failed! This Reg No. is already taken!" });
+      res.status(400).send({ message: MESSAGES.REGNO_TAKEN });
       return;
     }
 
@@ -29,7 +30,7 @@ checkDuplicateUsernameOrEmailforStudent = (req, res, next) => {
       }
 
       if (user) {
-        res.status(400).send({ message: "Failed! This Email is already taken!" });
+        res.status(400).send({ message: MESSAGES.EMAIL_TAKEN });
         return;
       }
 

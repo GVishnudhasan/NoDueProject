@@ -1,4 +1,5 @@
 const db = require("../models");
+const MESSAGES = require("../utils/const");
 const Admin = db.admin;
 const Faculty = db.faculty;
 const Student = db.student;
@@ -42,7 +43,7 @@ exports.createAdmin = (req, res) => {
                             return;
                         }
 
-                        res.send({ message: "Admin registered successfully!" });
+                        res.send({ message: MESSAGES.ADMIN_REGISTERED_SUCCESSFULLY });
                     });
                 }
             )
