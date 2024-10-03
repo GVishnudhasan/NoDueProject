@@ -38,10 +38,6 @@ import { CourseModalComponent } from './components/course-modal/course-modal.com
     // ToastrModule.forRoot(),
     RouterModule,
     ReactiveFormsModule,
-    NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({
-    showForeground: true,
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
