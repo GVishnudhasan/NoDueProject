@@ -36,38 +36,81 @@ This project is a web application that automates the process of requesting and a
 
 * Developed using the MEAN stack: MongoDB (Database), Express.js (Backend Framework), AngularJS (Frontend Framework), Node.js (Server-side JavaScript)
 
-**Getting Started**
 
-This section guides you on setting up the project locally.
+### Getting Started
 
-**Prerequisites**
+This section will guide you on setting up the project locally and running both the client and server sides.
 
-* Node.js and npm (Node Package Manager) installed on your system. You can download them from [https://nodejs.org/en](https://nodejs.org/en)
+#### **Prerequisites**
 
-<h1>Installation</h1>
+Before you begin, ensure you have the following installed on your system:
 
-1. Clone the project repository:
+- **Node.js and npm** (Node Package Manager): You can download them from [Node.js Official Website](https://nodejs.org/en/).
+- **MongoDB**: Ensure that MongoDB is installed and running locally. You can download it from [MongoDB Official Website](https://www.mongodb.com/try/download/community).
+- **Angular CLI**: The Angular Command Line Interface is required to run the frontend. Install it globally using npm:
+
+  ```bash
+  npm install -g @angular/cli
+  ```
+
+<h2>Installation</h2>
+
+1. **Clone the project repository**:
 
    ```bash
    git clone https://github.com/GVishnudhasan/NoDueProject.git
    ```
 
-2. Install dependencies:
+2. **Install dependencies for the server**:
+
+   Navigate to the project directory and install the required Node.js packages.
 
    ```bash
    cd NoDueProject
    npm install
    ```
 
-3. Start the development server:
+3. **Install dependencies for the client**:
+
+   The client-side (Angular) code is located in the `/client` folder. You’ll need to install the required packages for Angular.
+
+   ```bash
+   cd client
+   npm install
+   ```
+
+<h2>Running the Application</h2>
+
+Once the dependencies are installed, you can start both the client and server.
+
+1. **Start the server (Node.js and Express.js)**:
+
+   In the root directory of the project, start the server using the following command:
 
    ```bash
    npm start   # OR  nodemon index.js
    ```
 
-4. Access the application in your web browser:
+   The server should now be running at `http://localhost:3000`.
 
-   * Navigate to http://localhost:3000
+2. **Start the client (Angular)**:
+
+   Open another terminal, navigate to the `/client` folder, and start the Angular development server:
+
+   ```bash
+   cd client
+   ng serve
+   ```
+
+   By default, Angular runs on port `4200`. You can access the client application in your web browser:
+
+   ```bash
+   http://localhost:4200
+   ```
+
+#### **Database Setup**
+
+Make sure MongoDB is running on your system. By default, it will run on `mongodb://localhost:27017`. If your MongoDB is hosted at a different address, update the MongoDB connection string in the `config` file (typically located in `config/database.js` or `index.js`).
 
 <h1>Using the Application</h1>
 
