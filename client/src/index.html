@@ -14,9 +14,31 @@
 </head>
 
 <header>
+  <input type="text" id="search" placeholder="Search by Name or Roll No." class="form-control">
+  <div id="notificationArea" class="alert alert-info" role="alert" style="display: none;">
+    No new notifications.
+  </div>
+
+  
   <!-- <img src="./assets/header_image.png" alt="" class="img-responsive desktop-header">
   <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header"> -->
 </header>
+<script>
+  function showNotification(message) {
+    const notificationArea = document.getElementById('notificationArea');
+    notificationArea.style.display = 'block';
+    notificationArea.textContent = message;
+    setTimeout(() => {
+      notificationArea.style.display = 'none';
+    }, 5000); // Hide notification after 5 seconds
+  }
+
+  // Simulate new notification
+  window.onload = () => {
+    setTimeout(() => showNotification('Reminder: Clear your dues by 10th October!'), 2000);
+  };
+</script>
+
 
 
 <!-- app.component.html -->
@@ -24,5 +46,35 @@
 <body class="bg">
   <app-root></app-root>
 </body>
+<script>
+  function simulateProgress() {
+    const loadingBar = document.getElementById('loadingBar');
+    loadingBar.style.display = 'block';
+    let progress = 0;
+    const interval = setInterval(() => {
+      if (progress >= 100) {
+        clearInterval(interval);
+        loadingBar.style.display = 'none';
+      } else {
+        progress += 10;
+        loadingBar.value = progress;
+      }
+    }, 300); // Simulate loading with interval
+  }
+
+  // Simulate page load or API call start
+  window.onload = simulateProgress;
+</script>
+<script>
+  const students = ['John Doe', 'Jane Smith', 'Alex Johnson']; // Example data
+
+  document.getElementById('search').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const results = students.filter(student => student.toLowerCase().includes(query));
+    console.log('Search Results:', results); // You can display these results on the page
+  });
+</script>
+
+
 
 </html>
