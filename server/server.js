@@ -3,12 +3,11 @@ const cors = require("cors");
 const cookieSession = require("cookie-session");
 
 // const dbConfig = require("./app/config/db.config");
-const dotenv = require('dotenv');
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 const db_uri = process.env.DB_URI;
 const cookie_secret = process.env.COOKIE_SECRET;
-
 
 const app = express();
 
@@ -16,7 +15,6 @@ var corsOptions = {
   origin: "https://no-due-ksriet.netlify.app",
   credentials: true,
 };
-
 
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
@@ -29,11 +27,12 @@ app.use(
   cookieSession({
     name: "nodue-session",
     secret: cookie_secret, // should use as secret environment variable
-    httpOnly: true
+    httpOnly: true,
   })
 );
 
 const db = require("./app/models");
+const { ErrorMiddleware } = require("./app/middlewares/error");
 const Role = db.role;
 
 db.mongoose
@@ -43,13 +42,13 @@ db.mongoose
   // })
   .connect(`${db_uri}`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Connection error", err);
     process.exit();
   });
@@ -74,13 +73,14 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+app.use(ErrorMiddleware);
 
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Role({
-        name: "student"
-      }).save(err => {
+        name: "student",
+      }).save((err) => {
         if (err) {
           console.log("error", err);
         }
@@ -99,8 +99,8 @@ function initial() {
       // });
 
       new Role({
-        name: "faculty"
-      }).save(err => {
+        name: "faculty",
+      }).save((err) => {
         if (err) {
           console.log("error", err);
         }
@@ -109,8 +109,8 @@ function initial() {
       });
 
       new Role({
-        name: "admin"
-      }).save(err => {
+        name: "admin",
+      }).save((err) => {
         if (err) {
           console.log("error", err);
         }
