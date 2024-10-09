@@ -1,56 +1,74 @@
-<marquee behavior="" direction="">
-  <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
-</marquee>
-
-<header>
-  <img src="./assets/finalb.jpg" alt="" class="img-responsive desktop-header">
-  <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Due Management System</title>
   
-</header>
+</head>
+<body>
 
-<div class="login-container">
-  <h2>No Due Management System</h2>
-  <div class="card card-container">
-    <h1>Login</h1>
-    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
-    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="name">E-Mail</label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel"
-          [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
-        <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
-          Email is required!
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
-          #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+  <!-- Marquee without border -->
+  <marquee behavior="" direction="">
+    <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
+  </marquee>
 
-        <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
-          <div *ngIf="password.errors['required']">Password is required</div>
-          <div *ngIf="password.errors['minlength']">
-            Password must be at least 6 characters
+  <!-- PNG Image Header -->
+  <header>
+    <img src="./assets/finalb.jpg" alt="Desktop Header" class="img-responsive desktop-header">
+    <img src="./assets/mobile_header.png" alt="Mobile Header" class="img-responsive mobile-header">
+  </header>
+
+  <!-- No Due Management System Heading -->
+  <div class="login-container">
+    <h2>No Due Management System</h2>
+
+    <!-- Login Form Card -->
+    <div class="card card-container">
+      <h1>Login</h1>
+      <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" alt="Profile Image"/>
+      
+      <!-- Login Form -->
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+          <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
+            Email is required!
           </div>
-
         </div>
-      </div>
 
-      <br>
-
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Login</button>
-      </div>
-
-      <div class="form-group">
-        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-          Login failed: {{ errorMessage }}
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+            #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
+          <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
+            <div *ngIf="password.errors['required']">Password is required</div>
+            <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
 
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ name }}. Go to Dashboard <button (click)="goto()">Dashboard</button>.
+        <br>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Login</button>
+        </div>
+
+        <div class="form-group">
+          <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+      </form>
+
+      <div class="alert alert-success" *ngIf="isLoggedIn">
+        Logged in as {{ name }}. Go to Dashboard <button (click)="goto()">Dashboard</button>.
+      </div>
     </div>
   </div>
-</div>
+
+</body>
+</html>
