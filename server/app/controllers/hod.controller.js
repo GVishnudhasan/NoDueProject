@@ -1,8 +1,8 @@
-const db = require('../models');
-const MESSAGES = require('../utils/const');
+const db = require("../models");
+const MESSAGES = require("../utils/const");
 const Student = db.student;
-
-exports.grantHodSignature = async (req, res) => {
+const { CatchAsyncError } = require("../middlewares/catchAsyncErrors");
+exports.grantHodSignature = CatchAsyncError(async (req, res) => {
   try {
     const studentId = req.params.id;
     const student = await Student.findById(studentId);
@@ -15,4 +15,4 @@ exports.grantHodSignature = async (req, res) => {
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
-};
+});
