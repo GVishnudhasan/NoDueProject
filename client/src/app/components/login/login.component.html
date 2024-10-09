@@ -1,14 +1,17 @@
 <marquee behavior="" direction="">
   <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
 </marquee>
+
 <header>
   <img src="./assets/finalb.jpg" alt="" class="img-responsive desktop-header">
   <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header">
+  
 </header>
-<div class="col-md-12">
+
+<div class="login-container">
   <h2>No Due Management System</h2>
   <div class="card card-container">
-    <h1 style="text-align: center;">Login</h1>
+    <h1>Login</h1>
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
     <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
@@ -33,16 +36,12 @@
         </div>
       </div>
 
-
       <br>
 
       <div class="form-group">
-
-        <button class="btn btn-primary btn-block">
-          Login
-        </button>
-
+        <button class="btn btn-primary btn-block">Login</button>
       </div>
+
       <div class="form-group">
         <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
           Login failed: {{ errorMessage }}
@@ -51,9 +50,7 @@
     </form>
 
     <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ name }}.
-      <!-- Go to Dashboard <a routerLink="/student-board">here</a>. -->
-      Go to Dashboard <button (click)="goto()">Dashboard</button>.
+      Logged in as {{ name }}. Go to Dashboard <button (click)="goto()">Dashboard</button>.
     </div>
   </div>
 </div>
