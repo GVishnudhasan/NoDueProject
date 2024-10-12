@@ -69,43 +69,17 @@ h2 {
 }
 
 /* Basic styles for the marquee */
-marquee {
-  background: linear-gradient(90deg, #4c514f, #033a30); /* Gradient background */
-  color: #fff;                      /* White text color */
-  font-size: 22px;                  /* Slightly larger font size */
-  font-weight: bold;                /* Bold font */
-  padding: 15px;                    /* Add padding around the text */
-  border-radius: 15px;              /* Rounded corners */
-  box-shadow: 0 6px 12px rgba(54, 51, 51, 0.2); /* Deeper shadow for effect */
-  text-transform: uppercase;        /* Make text uppercase for emphasis */
-  letter-spacing: 1.5px;            /* Add spacing between letters */
-  animation: pulse 2s infinite;     /* Add a pulse effect animation */
-}
+
 
 h3 {
   margin: 0; /* Remove default margin from h3 */
 }
 
 /* Pulse animation for marquee */
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-  }
-}
+
 
 /* Hover effect for marquee */
-marquee:hover {
-  background: linear-gradient(90deg, #3b72df, #125e4b); /* Change gradient on hover */
-  color: #fff;                     /* Ensure text stays white */
-  transform: scale(1.05);          /* Slight zoom effect on hover */
-  transition: transform 0.3s ease; /* Smooth transition for hover effect */
-}
+
 
 /* Media query for mobile phones */
 @media only screen and (max-width: 600px) {
@@ -131,5 +105,17 @@ marquee:hover {
     height: auto;
     margin: 0 auto 20px; /* Center the image and add bottom margin */
   }
-  
+  .title-box {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Light background */
+    border: 2px solid #007bff; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    font-size: 1.8em;
+    color: #007bff; /* Text color */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }
