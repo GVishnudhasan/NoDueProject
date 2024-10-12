@@ -1,6 +1,6 @@
 .outer{ 
     height:100vh;
-    background-color:aqua; 
+    background-color:rgb(15, 215, 215); 
 } 
 .card-heading{
     text-align: center;
@@ -41,6 +41,9 @@
     border:1px solid red;
     color:red;
 } 
+.input-field:hover{
+    color: #0141d5;
+}
 
 input[type='text']{
     border:none;
