@@ -125,4 +125,11 @@ marquee:hover {
   h2 {
     top: 267px; /* Adjust the top value for mobile view */
   }
+  .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 20px; /* Center the image and add bottom margin */
+  }
+  
 }

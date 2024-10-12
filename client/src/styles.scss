@@ -1,9 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-// @import "~bootstrap/dist/css/bootstrap.css";
-// @import '~ngx-toastr/toastr';
-// @import 'node_modules/ngx-toastr/toastr';
-/* styles.css */
 .bg {
-  background-color: aquamarine;
+  background: linear-gradient(135deg, rgb(67, 28, 167), lightblue);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh; /* Allow content to grow beyond viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-/* styles.css */
+
+
+
+/* Ensure body and html allow scrolling */
+html, body {
+  overflow: auto;
+}

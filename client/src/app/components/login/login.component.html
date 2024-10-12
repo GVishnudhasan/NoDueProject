@@ -8,6 +8,9 @@
 <div class="col-md-12">
   <h2>No Due Management System</h2>
   <div class="card card-container">
+    <img src="https://www.agarum.com/photos/1/1/15/517/c/l/28346a72ffcfd3b6d41a5239461e0120.jpg" >
+    <!-- Add your image here -->
+    
     <h1 style="text-align: center;">Login</h1>
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
     <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -19,6 +22,7 @@
           Email is required!
         </div>
       </div>
+      
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
@@ -29,31 +33,44 @@
           <div *ngIf="password.errors['minlength']">
             Password must be at least 6 characters
           </div>
-
         </div>
       </div>
-
-
-      <br>
-
-      <div class="form-group">
-
-        <button class="btn btn-primary btn-block">
-          Login
-        </button>
-
-      </div>
-      <div class="form-group">
-        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-          Login failed: {{ errorMessage }}
-        </div>
-      </div>
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
-
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ name }}.
-      <!-- Go to Dashboard <a routerLink="/student-board">here</a>. -->
+    <div class="text-center">
       Go to Dashboard <button (click)="goto()">Dashboard</button>.
     </div>
   </div>
+  
+  <style>
+    /* Add this CSS to set the background image */
+    .background-image {
+      background-image: url('https://www.usnews.com/cmsmedia/a1/7c/61548aea4db9ab9045673bb5187f/160919-studentscollege-stock.jpg');
+      background-size: cover;
+      background-position: left;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: left;
+      justify-content:left;
+    }
+    
+    /* Optional: Style the card to stand out against the background */
+    .card-container {
+      background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+  
+  <div class="background-image">
+    <div class="col-md-12">
+      
+     
+        
+  
+    </div>
+  </div>
+  
 </div>
