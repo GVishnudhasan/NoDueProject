@@ -1,3 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            position: absolute; /* Allows left positioning */
+            left: 230px; /* Adjusts the image position */
+        }
+
+        .desktop-header {
+            display: none;
+        }
+
+        .mobile-header {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-header {
+                display: block;
+            }
+            .mobile-header {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
 <marquee behavior="" direction="">
   <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
 </marquee>

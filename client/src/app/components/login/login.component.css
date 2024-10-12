@@ -50,11 +50,14 @@ label {
   width: 80%;
   left: 90px;
 }
-
+ 
 .desktop-header {
-  display: block; /* Show the desktop header image */
-}
 
+  display:  block; /* Show the desktop header image */
+  margin-left:  55px;
+
+}
+ 
 .mobile-header {
   display: none; /* Hide the mobile header image by default */
 }
