@@ -15,6 +15,7 @@ import { StudentBoardComponent } from './components/student-board/student-board.
 import { FacultyBoardComponent } from './components/faculty-board/faculty-board.component';
 import { AdminBoardComponent } from './components/admin-board/admin-board.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CourseModalComponent } from './components/course-modal/course-modal.com
     FacultyBoardComponent,
     AdminBoardComponent,
     CourseModalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
