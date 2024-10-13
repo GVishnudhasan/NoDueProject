@@ -13,15 +13,15 @@
     <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="name">E-Mail</label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" required #email="ngModel"
+        <input type="text" class="form-control" name="email" placeholder="Enter your email address" [(ngModel)]="form.email" required #email="ngModel"
           [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
         <div *ngIf="email.errors && f.submitted" class="invalid-feedback">
           Email is required!
         </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+        <label for="password" >Password</label>
+        <input type="password" class="form-control" placeholder="Enter your password" name="password" [(ngModel)]="form.password" required minlength="6"
           #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" />
 
         <div *ngIf="password.errors && f.submitted" class="invalid-feedback">
