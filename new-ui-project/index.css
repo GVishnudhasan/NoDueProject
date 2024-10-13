@@ -1,0 +1,421 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+/* CSS Variables for Light and Dark Themes */
+:root {
+    /* Light Theme Variables */
+    --bg-color: #f0f0f0;
+    --text-color: #000000;
+    --header-text-color: #000000;
+    --header-text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    --background-color: #f0f0f0;
+    --login-bg-color: #e0e0e0; /* Greyish light color */
+    --login-border-color: #cccccc;
+    --login-text-color: #000000;
+    --login-text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    --input-bg-color: #ffffff;
+    --input-border-color: #cccccc;
+    --input-placeholder-color: #888888;
+    --button-bg-color: #000000; /* Black */
+    --button-text-color: #ffffff;
+    --button-hover-bg-color: #333333; /* Darker black */
+    --footer-bg-color: rgba(0, 0, 0, 0.1);
+    --footer-text-color: #000000;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Variables */
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-text-color: #ffffff;
+    --header-text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    --background-color: #121212;
+    --login-bg-color: #2c2c2c; /* Greyish dark color */
+    --login-border-color: #444444;
+    --login-text-color: #ffffff;
+    --login-text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    --input-bg-color: #3a3a3a;
+    --input-border-color: #555555;
+    --input-placeholder-color: #aaaaaa;
+    --button-bg-color: #ffffff; /* White for contrast */
+    --button-text-color: #000000;
+    --button-hover-bg-color: #dddddd; /* Light gray */
+    --footer-bg-color: rgba(255, 255, 255, 0.1);
+    --footer-text-color: #ffffff;
+
+}
+:root, body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Set the body and html to occupy full height */
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Header Styling */
+.header {
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; /* Ensure header stays above the background */
+    padding: 20px 40px; /* Adjusted padding for better spacing */
+    background: transparent; /* Transparent background to blend with the main background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center; /* Center text alignment */
+    color: var(--header-text-color); /* Dynamic color based on theme */
+    text-shadow: var(--header-text-shadow); /* Dynamic shadow based on theme */
+}
+
+/* Header Left (Logo) */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Styling */
+.logo {
+    width: 70px;
+    height: auto;
+    margin-right: 20px;
+    filter: brightness(0) invert(1); /* Adjust based on logo colors */
+}
+
+/* Header Center (Headings) */
+.header-center {
+    text-align: center;
+}
+
+.header-center h1 {
+    font-size: 40px; /* Adjusted for better responsiveness */
+    margin-bottom: 5px;
+    color: var(--header-text-color); /* Dynamic color based on theme */
+    text-shadow: var(--header-text-shadow); /* Dynamic shadow based on theme */
+}
+
+.header-center h2 { 
+    font-size: 30px; /* Adjusted for better responsiveness */
+    margin-bottom: 10px;
+    color: var(--header-text-color); /* Dynamic color based on theme */
+    text-shadow: var(--header-text-shadow); /* Dynamic shadow based on theme */
+}
+
+.header-center p {
+    font-size: 20px; /* Smaller font size for subtitle */
+    color: #959494; /* Slightly lighter text */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle glow */
+}
+
+/* Header Right (Theme Toggle) */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Theme Toggle Switch with Sun and Moon Icons */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle label {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+.theme-toggle label .toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+.theme-toggle label .sun {
+    left: 8px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.theme-toggle label .moon {
+    right: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.theme-toggle label .toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.theme-toggle input:checked + label {
+    background: #66bb6a;
+}
+
+.theme-toggle input:checked + label .toggle-knob {
+    transform: translateX(30px);
+}
+
+.theme-toggle input:checked + label .sun {
+    opacity: 0;
+}
+
+.theme-toggle input:checked + label .moon {
+    opacity: 1;
+}
+
+/* Background Container */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Enhanced Glitter Effect */
+.background::before, .background::after {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.8) 3px, transparent 3px),
+        radial-gradient(circle, rgba(255,255,255,0.8) 3px, transparent 3px),
+        radial-gradient(circle, rgba(255,255,255,0.8) 3px, transparent 3px);
+    background-position: 0 0, 50px 50px, 100px 100px;
+    background-size: 120px 120px; /* Increased size to accommodate larger dots */
+    animation: glitterMove 30s linear infinite;
+    opacity: 0.8; /* Increased opacity for brightness */
+}
+
+[data-theme="light"] .background::before, [data-theme="light"] .background::after {
+    background-image:
+        radial-gradient(circle, rgba(0, 0, 0, 0.3) 3px, transparent 3px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.3) 3px, transparent 3px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.3) 3px, transparent 3px);
+    background-position: 0 0, 50px 50px, 100px 100px;
+    background-size: 120px 120px; /* Consistent size for both themes */
+}
+
+.background::after {
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,0.6) 3px, transparent 3px),
+        radial-gradient(circle, rgba(255,255,255,0.4) 3px, transparent 3px),
+        radial-gradient(circle, rgba(255,255,255,0.2) 3px, transparent 3px);
+    background-position: 50px 50px, 100px 100px, 150px 150px;
+    background-size: 120px 120px; /* Increased size */
+    animation-direction: reverse;
+    opacity: 0.7; /* Increased opacity */
+}
+
+[data-theme="light"] .background::after {
+    background-image:
+        radial-gradient(circle, rgba(5, 5, 5, 0.6) 3px, transparent 3px),
+        radial-gradient(circle, rgba(5, 5, 5, 0.4) 3px, transparent 3px),
+        radial-gradient(circle, rgba(16,16,16,0.2) 3px, transparent 3px);
+    background-position: 50px 50px, 100px 100px, 150px 150px;
+    background-size: 120px 120px; /* Increased size */
+    opacity: 0.7; /* Increased opacity */
+}
+
+/* Glitter Animation */
+@keyframes glitterMove {
+    from {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Login Container Styling */
+.login-container {
+    position: absolute;
+    background: var(--login-bg-color); /* Dynamic based on theme */
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px); /* Enhanced Glassmorphism */
+    width: 350px;
+    color: var(--login-text-color);
+    text-align: center;
+    border: 2px solid var(--login-border-color);
+    z-index: 1;
+    transition: 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Glowing Border Around Login Container */
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 25px;
+    filter: blur(20px);
+    z-index: -1;
+    animation: glowingBorder 5s linear infinite;
+}
+
+/* Glowing Border Animation */
+@keyframes glowingBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Adjustments for Light Theme */
+[data-theme="light"] .login-container {
+    background: var(--login-bg-color);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    color: var(--login-text-color);
+    border: 4px solid var(--login-border-color);
+}
+
+[data-theme="light"] .login-container::before {
+    background: radial-gradient(circle, rgba(16,16,16,0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 20px;
+    filter: blur(10px);
+    animation: glowingBorder 5s linear infinite;
+}
+
+.user-icon {
+    font-size: 50px; /* Adjust size as needed */
+    margin-bottom: 20px; /* Space between icon and heading */
+    color: var(--login-text-color); /* Ensure visibility */
+}
+/* Heading Styling */
+.login-container h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: var(--login-text-color);
+    text-shadow: var(--login-text-shadow);
+}
+
+/* Input Group Styling */
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #424141;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: #585858;
+    font-size: 16px;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.input-group input:focus {
+    outline: none;
+    border: 1px solid var(--text-color);
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Submit Button Styling */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-bg-color); /* Dynamic based on theme */
+    color: var(--button-text-color); /* Dynamic based on theme */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color); /* Dynamic based on theme */
+    transform: translateY(-2px);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .login-container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-left, .header-center, .header-right {
+        margin-bottom: 10px;
+    }
+}
