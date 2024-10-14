@@ -2,6 +2,9 @@ label {
   display: block;
   margin-top: 10px;
 }
+.col-md-12{
+  margin-bottom: 300px;
+}
 
 .card-container.card {
   max-width: 400px !important;
@@ -47,7 +50,7 @@ label {
   height: 150px;
   align-items: center;
   width: 80%;
-  left: 90px;
+  left: 10%;
 }
  
 .desktop-header {
