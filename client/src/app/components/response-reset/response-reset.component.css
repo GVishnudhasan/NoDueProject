@@ -35,12 +35,16 @@ font-weight: 500;
   align-items: center;
   cursor:pointer;
   border: 1px solid #ddd;
-  color:#4343ff;
+  color:#1919f3;
 }
 .input-field.error{
   border:1px solid red;
   color:red;
 } 
+.input-field :hover{
+  transition-duration: .3s ease;
+  color:rgb(5, 195, 68)
+}
 
 input[type='text']{
   border:none;

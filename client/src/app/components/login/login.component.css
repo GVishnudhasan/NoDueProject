@@ -24,7 +24,7 @@ label {
   margin: 0 auto 10px;
   display: block;
   -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  -webkit-border-radius: 60%;
   border-radius: 50%;
 }
 
@@ -63,7 +63,7 @@ label {
 
 h2 {
   text-align: center;
-  color: #162938;
+  color: #0c1014;
   font-size: 2.5em;
   font-weight: 500;
   top: 170px;
@@ -104,7 +104,7 @@ h3 {
 
 /* Hover effect for marquee */
 marquee:hover {
-  background: linear-gradient(90deg, #3b72df, #125e4b); /* Change gradient on hover */
+  background: linear-gradient(90deg, #3b72df, #094838); /* Change gradient on hover */
   color: #fff;                     /* Ensure text stays white */
   transform: scale(1.05);          /* Slight zoom effect on hover */
   transition: transform 0.3s ease; /* Smooth transition for hover effect */
