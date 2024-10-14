@@ -14,83 +14,146 @@
 
 ![Downloads](https://img.shields.io/github/downloads/GVishnudhasan/NoDueProject/total) ![Contributors](https://img.shields.io/github/contributors/GVishnudhasan/NoDueProject?color=dark-green) ![Stargazers](https://img.shields.io/github/stars/GVishnudhasan/NoDueProject?style=social) ![Issues](https://img.shields.io/github/issues/GVishnudhasan/NoDueProject) ![License](https://img.shields.io/github/license/GVishnudhasan/NoDueProject) 
 
-## About The Project
 
-This project is an automated system for requesting and approving no-due certificates for students at the end of each semester. The application consists of a login and registration page, where users can register as a student or faculty members. Each role has different privileges and access to different parts of the application.
+<h1>Project Overview</h1>
 
-Once logged in, students are redirected to a dashboard that displays a list of their subjects and the handling faculty for each subject. Students can request no due certificates from the handling faculty for each subject, and the respective faculty member can approve or reject the request. After all faculty members have approved the request, it is sent to the head of the department (HoD) for final approval. Once the HoD has given their digital signature, the student is approved to write the end-semester exams.
+This project is a web application that automates the process of requesting and approving no-due certificates for students at the end of each semester. 
 
-## Project Demo
+**Features**
 
-Check out the project demo on YouTube: [Demo Video](https://www.youtube.com/watch?v=EFDIiGfouYo)
+* **User Roles:** The system supports different user roles: Students and Faculty Members. Each role has specific privileges.
+* **Student Dashboard:** Students can view a list of their subjects, handling faculty, and request no-due certificates for each subject.
+* **Faculty Review:** Faculty members can review student requests, approve or reject, and view all pending requests they are responsible for.
+* **Approval Workflow:** Once all faculty members approve a request, it gets sent to the Head of Department (HoD) for final approval.
+* **Digital Signature:** The HoD can provide a digital signature for approved certificates.
+* **Seamless Access:** Students can track the approval status and write exams upon final approval.
 
-## Built With
+**Project Demo**
 
-The project uses the MEAN (MongoDB, Express.js, AngularJS, and Node.js) stack for development.
+* Watch the project demo on YouTube: [Link to Demo Video](https://www.youtube.com/watch?v=EFDIiGfouYo)
 
-## Getting Started
+**Technology Stack**
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+* Developed using the MEAN stack: MongoDB (Database), Express.js (Backend Framework), AngularJS (Frontend Framework), Node.js (Server-side JavaScript)
 
-### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+### Getting Started
 
-* npm
+This section will guide you on setting up the project locally and running both the client and server sides.
 
-```sh
-npm install npm@latest -g
-```
+#### **Prerequisites**
 
-### Installation
+Before you begin, ensure you have the following installed on your system:
 
-To install and run the project locally, follow these steps:
+- **Node.js and npm** (Node Package Manager): You can download them from [Node.js Official Website](https://nodejs.org/en/).
+- **MongoDB**: Ensure that MongoDB is installed and running locally. You can download it from [MongoDB Official Website](https://www.mongodb.com/try/download/community).
+- **Angular CLI**: The Angular Command Line Interface is required to run the frontend. Install it globally using npm:
 
-1. Clone the repository to your local machine using 
-`git clone https://github.com/GVishnudhasan/NoDueProject.git`
-2. Install the necessary dependencies by running `npm install` in the project root directory
-3. Start the server by running `npm start` or `nodemon index.js` in the project root directory
-4. Open a web browser and navigate to http://localhost:3000 to access the application
+  ```bash
+  npm install -g @angular/cli
+  ```
 
-## Usage
+<h2>Installation</h2>
 
-To use the application, follow these steps:
+1. **Clone the project repository**:
 
-1. Register as a student or faculty member using the registration page.
-2. Log in to the application using your email and password.
-3. If you are a student, you will be redirected to your dashboard, which displays a list of your subjects and the handling faculty for each subject.
-4. Click on the "Request No Due" button next to a subject to request a no-due certificate from the handling faculty member for that subject
-5. If you are a faculty member, you will see a list of pending no due requests from students for the subjects you handle.
-6. Click on a request to view more details, and then click "Approve" or "Reject" to approve or reject the request.
-7. Once all faculty members have approved the request, it will be sent to the HoD for final approval.
-8. After the HoD has given their digital signature, the student is approved to write the end-semester exams.
+   ```bash
+   git clone https://github.com/GVishnudhasan/NoDueProject.git
+   ```
 
-## Roadmap
+2. **Install dependencies for the server**:
 
-See the [open issues](https://github.com/GVishnudhasan/NoDueProject/issues) for a list of proposed features (and known issues).
+   Navigate to the project directory and install the required Node.js packages.
 
-## Contributing
+   ```bash
+   cd NoDueProject
+   npm install
+   ```
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/GVishnudhasan/NoDueProject/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
-* Please make sure you check your spelling and grammar.
-* Create individual PR for each suggestion.
-* Please also read through the [Code Of Conduct](https://github.com/GVishnudhasan/NoDueProject/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
+3. **Install dependencies for the client**:
 
-### Creating A Pull Request
+   The client-side (Angular) code is located in the `/client` folder. You’ll need to install the required packages for Angular.
 
-If you would like to contribute to the project, please follow these steps:
+   ```bash
+   cd client
+   npm install
+   ```
 
-1. Fork the repository to your own GitHub account.
-2. Create a new branch for your changes.
-3. Make your changes and test them thoroughly.
-4. Commit your changes and push them to your forked repository.
-5. Create a pull request from your branch to the original repository, explaining your changes and why they should be merged.
+<h2>Running the Application</h2>
 
-## License
+Once the dependencies are installed, you can start both the client and server.
+
+1. **Start the server (Node.js and Express.js)**:
+
+   In the root directory of the project, start the server using the following command:
+
+   ```bash
+   npm start   # OR  nodemon index.js
+   ```
+
+   The server should now be running at `http://localhost:3000`.
+
+2. **Start the client (Angular)**:
+
+   Open another terminal, navigate to the `/client` folder, and start the Angular development server:
+
+   ```bash
+   cd client
+   ng serve
+   ```
+
+   By default, Angular runs on port `4200`. You can access the client application in your web browser:
+
+   ```bash
+   http://localhost:4200
+   ```
+
+#### **Database Setup**
+
+Make sure MongoDB is running on your system. By default, it will run on `mongodb://localhost:27017`. If your MongoDB is hosted at a different address, update the MongoDB connection string in the `config` file (typically located in `config/database.js` or `index.js`).
+
+<h1>Using the Application</h1>
+
+1. Register as a student or faculty member.
+2. Login with your credentials.
+
+**Student Functionality:**
+
+* View subject list and handling faculty.
+* Request no-due certificates for specific subjects.
+* Track the approval status of requests.
+
+**Faculty Functionality:**
+
+* Review pending no-due requests from students they handle.
+* Approve or reject requests with detailed information.
+
+**Approval Workflow:**
+
+* After faculty approval, the request gets sent to the HoD for final approval.
+* Upon HoD approval (digital signature), students are eligible to write exams.
+
+<h1>Contributing</h1>
+
+We welcome contributions to improve the project!
+
+* **Open Issues:** Check the list of open issues for proposed features and known bugs.
+* **Contributing Steps:**
+    * Fork the repository.
+    * Create a new branch for your changes.
+    * Implement your changes and test them thoroughly.
+    * Commit and push your changes to your forked repository.
+    * Create a pull request with a clear explanation of your changes and why they should be merged.
+* **Code of Conduct:** Please ensure your code adheres to the project's [code of conduct](https://github.com/GVishnudhasan/NoDueProject/blob/main/CODE_OF_CONDUCT.md)
+* **Pull Request Guidelines:**
+    * Create a separate pull request for each suggestion.
+    * Ensure clear descriptions of your changes.
+    * Proofread your code and documentation before submitting.
+
+<h3>License</h3>
 
 Distributed under the MIT License. See [LICENSE](https://github.com/GVishnudhasan/NoDueProject/blob/main/LICENSE.md) for more information.
 
-## Credits
-This project is being developed by G Vishnudhasan and A Ragul, D Geethapriya, K Nandhini, of II - Computer Science and Engineering at KSR Institute For Engineering and Technology.
+<h3>Credits</h3>
+
+Developed by G Vishnudhasan, A Ragul, D Geethapriya, and K Nandhini, students of Computer Science and Engineering at KSR Institute For Engineering and Technology.
