@@ -1,0 +1,11 @@
+{
+  "name": "nodueproject",
+  "version": "1.0.0",
+  "description": "<br/>\r <p align=\"center\">\r   <h3 align=\"center\">Automated No Due Certificate Request System</h3>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
