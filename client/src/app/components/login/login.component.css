@@ -2,6 +2,9 @@ label {
   display: block;
   margin-top: 10px;
 }
+.col-md-12{
+  margin-bottom: 300px;
+}
 
 .card-container.card {
   max-width: 400px !important;
@@ -24,7 +27,7 @@ label {
   margin: 0 auto 10px;
   display: block;
   -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  -webkit-border-radius: 60%;
   border-radius: 50%;
 }
 
@@ -41,32 +44,73 @@ label {
   font-weight: 500;
 }
 
-/* styles.css */
 .img-responsive {
   display: flex;
   position: absolute;
   height: 150px;
   align-items: center;
   width: 80%;
-  left: 90px;
+  left: 10%;
 }
-
+ 
 .desktop-header {
-  display: block; /* Show the desktop header image */
-}
 
+  display:  block; /* Show the desktop header image */
+  margin-left:  55px;
+
+}
+ 
 .mobile-header {
   display: none; /* Hide the mobile header image by default */
 }
 
 h2 {
   text-align: center;
-  color: #162938;
+  color: #0c1014;
   font-size: 2.5em;
   font-weight: 500;
   top: 170px;
   margin-bottom: 10px;
   position: relative; /* Add position: relative to h2 */
+}
+
+/* Basic styles for the marquee */
+marquee {
+  background: linear-gradient(90deg, #4c514f, #033a30); /* Gradient background */
+  color: #fff;                      /* White text color */
+  font-size: 22px;                  /* Slightly larger font size */
+  font-weight: bold;                /* Bold font */
+  padding: 15px;                    /* Add padding around the text */
+  border-radius: 15px;              /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(54, 51, 51, 0.2); /* Deeper shadow for effect */
+  text-transform: uppercase;        /* Make text uppercase for emphasis */
+  letter-spacing: 1.5px;            /* Add spacing between letters */
+  animation: pulse 2s infinite;     /* Add a pulse effect animation */
+}
+
+h3 {
+  margin: 0; /* Remove default margin from h3 */
+}
+
+/* Pulse animation for marquee */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Hover effect for marquee */
+marquee:hover {
+  background: linear-gradient(90deg, #3b72df, #094838); /* Change gradient on hover */
+  color: #fff;                     /* Ensure text stays white */
+  transform: scale(1.05);          /* Slight zoom effect on hover */
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
 /* Media query for mobile phones */
