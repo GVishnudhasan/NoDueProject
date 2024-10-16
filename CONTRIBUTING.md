@@ -1,121 +1,104 @@
-# Contributing to NoDueProject 🚀
-Thank you for your interest in contributing to this NoDueProject! We appreciate all contributions, whether they're bug fixes, new features, documentation improvements, or any other enhancements. 🌟
+Contributing to NoDueProject 🚀
+Thank you for your interest in contributing to NoDueProject! We appreciate all contributions, whether they are bug fixes, new features, documentation improvements, or other enhancements. 🌟
 
-Please follow the guidelines below to ensure a smooth contribution process.
+To ensure a positive and respectful community, please read and abide by our Code of Conduct.
 
-## Getting Started 🛠️
+Table of Contents
+Getting Started
+New Contributor Guide
+Making Changes
+Issues
+Pull Request Process
+Thank You for Contributing!
+Getting Started 🛠️
+This guide provides an overview of the contribution workflow, including opening an issue, creating a pull request, reviewing, and merging the PR.
 
-To work confidently with our codebase, please review the introduction to working in the docs repository. If you're new to writing markdown files, you can refer to the [GitHub Markdown reference](https://guides.github.com/features/mastering-markdown/) for guidance.
+To work confidently with our codebase, please review the introduction to working in the docs repository. If you're new to writing markdown files, refer to the GitHub Markdown reference for guidance.
 
-Before making any changes, please check the types of contributions we accept. You might be surprised to find that some contributions don't require writing a single line of code! 💡
+New Contributor Guide
+Before making any changes, please check the types of contributions we accept. Some contributions might not require writing code! 💡
 
-## 1. Identify an Issue 🔍
+Steps for New Contributors:
+Familiarize yourself with open source contributions and how to contribute on GitHub.
+Set up Git on your local machine.
+Understand GitHub flow and how to collaborate using pull requests.
+Issues
+Creating an Issue 🔍
+If you come across any problems or issues with the project, follow these steps:
 
-- ### Create a New Issue or Find Existing Ones
+Search our existing issues to check if a related one already exists.
+If not, open a new issue with the following details:
+Issue Title: A concise and descriptive title.
+Description: Clear and detailed description of the issue or feature request.
+Steps to Reproduce: Detailed steps to reproduce the issue.
+Expected Behavior: What you expected to happen.
+Screenshots: If applicable, add screenshots to help explain your problem.
+Solving an Issue
+Browse through existing issues and filter them using labels to find one that interests you.
+We don't assign issues to individuals, so feel free to open a pull request if you find an issue you'd like to work on. 💪
+Making Changes ✏️
+Making Changes in the UI
+For small changes (like fixing a typo or correcting a link):
 
-  If you come across any problems or issues with the documentation, first search our existing issues to check if a related one already exists. If not, you can open a new issue using the relevant issue form. 📝
+Click on "Make a contribution" at the bottom of the relevant page.
+This will take you to the .md file where you can make your changes and create a pull request.
+Making Changes in a Codespace
+If you prefer working in a codespace, refer to the Working in a codespace guide for more information.
 
-- ### Solve an Issue
+Making Changes Locally
+To make changes locally, follow these steps:
 
-  Browse through our existing issues and filter them using labels to find one that interests you. As a general practice, we don't assign issues to specific individuals. If you find an issue you'd like to work on, feel free to open a pull request with your proposed fix. 💪
+Fork the repository to your GitHub account.
 
-### Issue Template:
-- **Issue Title:** A concise and descriptive title.
-- **Description:** Clear and detailed description of the issue or feature request.
-- **Steps to Reproduce:** Detailed steps to reproduce the issue.
-- **Expected Behavior:** What you expected to happen.
-- **Screenshots:** If applicable, add screenshots to help explain your problem.
+Clone your forked repository:
 
-## 2. Making Changes ✏️
+bash
+Copy code
+git clone https://github.com/YOUR-USERNAME/NoDueProject.git
+Navigate to the project directory:
 
-### Make Changes in the UI
+bash
+Copy code
+cd NoDueProject
+Create a new branch for your changes:
 
-- For small changes like fixing a typo, correcting a sentence, or updating a broken link, navigate to any docs page and click on "Make a contribution" at the bottom. This will take you to the .md file where you can make your changes and create a pull request for review. 🖊️
-
-### Make Changes in a Codespace
-
-- If you prefer working in a codespace for GitHub documentation, refer to the [Working in a codespace guide](https://docs.github.com/en/codespaces) for more information.
-
-### Make Changes Locally
-
-_To make changes locally, follow these steps:_
-
-### Step 1: Fork the Repository 🍴
-Once you have identified the issue or feature you want to work on:
-1. **Fork** this repository to your GitHub account by clicking the "Fork" button in the top right.
-
-2. **Clone** your forked repository to your local machine:
-
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/NoDueProject.git
-   ```
-
-3. Navigate to the project directory:
-   ```bash
-   cd NoDueProject
-   ```
-   Further, you can Navigate to the project directory(Frontend):
-   ```bash
-   cd client
-   ```
-   or
-   Navigate to the project directory(Backend):
-   ```bash
-   cd server
-   ```
-### Step 2: Create a New Branch 🌳
-
-Before making changes, create a new branch for your feature or bug fix:
-```bash
+bash
+Copy code
 git checkout -b feature/your-feature-name
-```
+Make your changes while following best practices:
 
-### Step 3: Make the Necessary Changes ⚙️
+Maintain clean, modular, and efficient code.
+Comment your code where necessary.
+Test your code thoroughly.
+Commit your changes with a clear message:
 
-Work on your branch to make the required changes. Ensure that your code follows these guidelines:
-- **Code Quality:** Maintain clean, modular, and efficient code. Comment your code where necessary. 
-- **Structure:** Follow the existing folder and component structure to keep things consistent.
-- **Testing:** Test your code thoroughly to ensure there are no bugs or issues.
-- **Screenshots or Videos:** Take screenshots or record a short video of your changes to demonstrate what you worked on.
-
-### Step 4: Commit and Push Your Changes 📦
-Once your changes are complete, add your changes to the staging area:
-```bash
-git add .
-```
-
-Once your changes are complete, commit them with a clear and concise message:
-```bash
+bash
+Copy code
 git commit -m "Add feature/your-feature-name"
-```
+Push your changes to your forked repository:
 
-Push the changes to your forked repository:
-```bash
+bash
+Copy code
 git push origin feature/your-feature-name
-```
+Pull Request Process 📨
+Create a Pull Request (PR):
 
-### Step 5: Create a Pull Request (PR) 🔄
-Go to the original repository and click "Compare & Pull Request".
+Go to the original repository and click "Compare & Pull Request."
+Fill out the "Ready for review" template to help us review your changes effectively.
+If you're solving an issue, link the PR to the relevant issue.
+Review and Feedback:
 
-## Pull Request 📨
+A member of the team will review your proposal.
+Answer any questions or provide additional information if requested.
+Apply changes as requested, and mark each conversation as resolved.
+Merge Conflicts:
 
-When you've completed your changes, create a pull request (PR) using the following steps:
+If you encounter any merge issues, refer to a git tutorial for help in resolving conflicts.
+Once all conflicts are resolved, your PR will be merged.
+Celebrate 🎉:
 
-1. Fill out the "Ready for review" template in the PR so that we can review your changes effectively. If you're solving an issue, don't forget to link the PR to the relevant issue.
-2. Enable the checkbox to allow maintainer edits so that the branch can be updated for a merge.
-3. Submit your PR, and a member of the Docs team will review your proposal. They may ask questions or request additional information.
-4. As you update your PR and apply changes, mark each conversation as resolved.
-5. If you encounter any merge issues, refer to a git tutorial to help resolve conflicts and other problems.
-6. Once your PR is merged, congratulations!🎉 Your contributions will be publicly visible on the GitHub docs.
-
----
-
-### Thank You for Contributing! 🙏
-
-We greatly appreciate your contributions to **NoDueProject**. If you have any doubts or need clarification at any point, please feel free to reach out by creating an issue or asking a question in the PR comments.
+Once your PR is merged, congratulations! Your contributions will be publicly visible.
+Thank You for Contributing! 🙏
+We greatly appreciate your contributions to NoDueProject. If you have any doubts or need clarification, please feel free to reach out by creating an issue or asking a question in the PR comments.
 
 Happy coding!
-
---- 
-
-This document ensures that contributors understand how to get started, work within the 's guidelines, and maintain quality contributions.
