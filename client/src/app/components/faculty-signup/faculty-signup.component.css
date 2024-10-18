@@ -10,6 +10,13 @@ label {
   max-width: 400px !important;
   padding: 40px 40px;
   top: 260px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for both hover effects */
+}
+
+.card-container.card:hover {
+  box-shadow: 0 0 20px rgba(0, 100, 0, 0.7), /* Dark green glow effect */
+              0 0 30px rgba(0, 100, 0, 0.5); /* Stronger dark green glow on hover */
+  transform: translateY(-10px); /* Moves the card up on hover */
 }
 
 .card {
