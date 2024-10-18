@@ -4,25 +4,108 @@
   <meta charset="utf-8">
   <title>No Due Management System</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-  <link rel="icon" type="image/x-icon" href="favicon.ico"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <link rel="icon" type="image/x-icon" href="./favicon.ico"> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> <!-- New font -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif; /* Updated font family */
+    }
+    body.bg {
+      background-color: #f0f4ff; /* Light blue background */
+    }
+    header {
+      background-color: #0056b3; /* Darker blue for header */
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 20px;
+    }
+    h2, h3, h4 {
+      color: #003d80; /* Dark blue for headings */
+    }
+    .notification {
+      margin: 20px 0;
+    }
+    .item {
+      margin: 10px 0;
+      background-color: #e6f0ff; /* Light blue for item background */
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border: 2px solid #0056b3; /* Blue border for items */
+      transition: transform 0.2s; /* Smooth transition for hover effect */
+    }
+    .item:hover {
+      transform: scale(1.02); /* Slightly enlarge on hover */
+    }
+    .btn-primary {
+      background-color: #007bff; /* Primary blue */
+      border-color: #007bff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #004085;
+    }
+    .btn-secondary {
+      background-color: #6c757d; /* Default gray */
+      border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+      border-color: #545b62;
+    }
+    .form-control, .form-label {
+      margin-bottom: 15px;
+    }
+    #profileDisplay {
+      background-color: #ffffff; /* White background for profile */
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border: 2px solid #0056b3; /* Blue border for profile display */
+      margin-top: 20px;
+    }
+    #recommendationsDisplay {
+      margin-top: 20px;
+      padding: 15px; /* Increased padding */
+      border-radius: 5px;
+      background-color: #ffffff; /* White background for recommendations */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border: 2px solid #0056b3; /* Blue border for recommendations */
+      max-width: 600px; /* Increased box size */
+    }
+    .profile-picture {
+      width: 100px; /* Set width of the profile picture */
+      height: 100px; /* Set height of the profile picture */
+      border-radius: 50%; /* Make it circular */
+      border: 3px solid #0056b3; /* Blue border for profile picture */
+      margin-bottom: 15px; /* Margin below the picture */
+    }
+    .saved-item {
+      background-color: #cce5ff; /* Light blue background for saved items */
+      padding: 15px; /* Increased padding */
+      border-radius: 5px;
+      border: 2px solid #0056b3; /* Blue border for saved items */
+      margin: 10px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .delete-button {
+      float: right; /* Align delete button to the right */
+      background-color: #dc3545; /* Red for delete button */
+      color: white;
+    }
+  </style>
 </head>
 
 <header>
-  <input type="text" id="search" placeholder="Search by Name or Roll No." class="form-control">
-  <div id="notificationArea" class="alert alert-info" role="alert" style="display: none;">
-    No new notifications.
-  </div>
-
-  
-  <!-- <img src="./assets/header_image.png" alt="" class="img-responsive desktop-header">
-  <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header"> -->
+  <h1>No Due Management System</h1>
 </header>
+
 <script>
   function showNotification(message) {
     const notificationArea = document.getElementById('notificationArea');
@@ -39,42 +122,142 @@
   };
 </script>
 
-
-
-<!-- app.component.html -->
-
 <body class="bg">
-  <app-root></app-root>
-</body>
-<script>
-  function simulateProgress() {
-    const loadingBar = document.getElementById('loadingBar');
-    loadingBar.style.display = 'block';
-    let progress = 0;
-    const interval = setInterval(() => {
-      if (progress >= 100) {
-        clearInterval(interval);
-        loadingBar.style.display = 'none';
-      } else {
-        progress += 10;
-        loadingBar.value = progress;
+  <div class="container">
+    <div id="notificationArea" class="alert alert-info notification" role="alert" style="display: none;"></div>
+
+    <!-- Profile Creation -->
+    <h2>Create Profile</h2>
+    <form id="profileForm" class="mb-4">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" id="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="preferences" class="form-label">Preferences (comma separated):</label>
+        <textarea id="preferences" class="form-control"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="profilePicture" class="form-label">Profile Picture:</label>
+        <input type="file" id="profilePicture" accept="image/*" class="form-control" onchange="previewProfilePicture(event)">
+      </div>
+      <img id="profilePreview" class="profile-picture" src="" alt="Profile Picture Preview" style="display:none;">
+      <button type="submit" class="btn btn-primary">Create Profile</button>
+    </form>
+
+    <div id="profileDisplay" class="mb-4"></div>
+
+    <!-- Saved Items -->
+    <h2>Items</h2>
+    <div class="item">
+      <p>Item 1 <button class="btn btn-secondary btn-sm" onclick="saveItem('Item 1')">Save</button></p>
+    </div>
+    <div class="item">
+      <p>Item 2 <button class="btn btn-secondary btn-sm" onclick="saveItem('Item 2')">Save</button></p>
+    </div>
+    <div class="item">
+      <p>Item 3 <button class="btn btn-secondary btn-sm" onclick="saveItem('Item 3')">Save</button></p>
+    </div>
+
+    <h3>Saved Items</h3>
+    <div id="savedItemsDisplay" class="mb-4"></div>
+
+    <!-- Personalized Recommendations -->
+    <h3>Personalized Recommendations</h3>
+    <div id="recommendationsDisplay"></div>
+  </div>
+
+  <script>
+    // Profile Creation
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const preferences = document.getElementById('preferences').value;
+      const profilePicture = document.getElementById('profilePicture').files[0];
+
+      const userProfile = { name, email, preferences, profilePicture: URL.createObjectURL(profilePicture) };
+
+      // Save to local storage
+      localStorage.setItem('userProfile', JSON.stringify(userProfile));
+      displayProfile(userProfile);
+      getRecommendations();
+    });
+
+    function displayProfile(profile) {
+      const profileDisplay = document.getElementById('profileDisplay');
+      profileDisplay.innerHTML = `<h4>Profile</h4>
+        <img src="${profile.profilePicture}" class="profile-picture" alt="Profile Picture">
+        <p>Name: ${profile.name}</p>
+        <p>Email: ${profile.email}</p>
+        <p>Preferences: ${profile.preferences}</p>`;
+    }
+
+    // Preview Profile Picture
+    function previewProfilePicture(event) {
+      const profilePreview = document.getElementById('profilePreview');
+      profilePreview.src = URL.createObjectURL(event.target.files[0]);
+      profilePreview.style.display = 'block';
+    }
+
+    // Saved Items Management
+    let savedItems = JSON.parse(localStorage.getItem('savedItems')) || [];
+
+    function saveItem(item) {
+      if (!savedItems.includes(item)) {
+        savedItems.push(item);
+        localStorage.setItem('savedItems', JSON.stringify(savedItems));
+        displaySavedItems();
       }
-    }, 300); // Simulate loading with interval
-  }
+    }
 
-  // Simulate page load or API call start
-  window.onload = simulateProgress;
-</script>
-<script>
-  const students = ['John Doe', 'Jane Smith', 'Alex Johnson']; // Example data
+    function deleteItem(item) {
+      savedItems = savedItems.filter(i => i !== item);
+      localStorage.setItem('savedItems', JSON.stringify(savedItems));
+      displaySavedItems();
+    }
 
-  document.getElementById('search').addEventListener('input', function() {
-    const query = this.value.toLowerCase();
-    const results = students.filter(student => student.toLowerCase().includes(query));
-    console.log('Search Results:', results); // You can display these results on the page
-  });
-</script>
+    function displaySavedItems() {
+      const savedItemsDisplay = document.getElementById('savedItemsDisplay');
+      savedItemsDisplay.innerHTML = savedItems.length 
+        ? savedItems.map(item => `
+            <div class="saved-item">
+              <p>${item} <button class="delete-button btn btn-danger btn-sm" onclick="deleteItem('${item}')">Delete</button></p>
+            </div>`).join('')
+        : '<p>No saved items.</p>';
+    }
 
+    displaySavedItems(); // Display saved items on load
 
+    // Personalized Recommendations
+    function getRecommendations() {
+      const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+      const preferences = userProfile ? userProfile.preferences.toLowerCase().split(',') : [];
 
+      // Sample items with categories
+      const items = [
+        { name: 'Item 1', category: 'tech' },
+        { name: 'Item 2', category: 'books' },
+        { name: 'Item 3', category: 'tech' },
+        { name: 'Item 4', category: 'lifestyle' },
+      ];
+
+      const recommendations = items.filter(item => 
+        preferences.some(pref => item.category.includes(pref.trim()))
+      );
+
+      const recommendationsDisplay = document.getElementById('recommendationsDisplay');
+      recommendationsDisplay.innerHTML = recommendations.length 
+        ? recommendations.map(item => `<p>${item.name}</p>`).join('')
+        : '<p>No recommendations available.</p>';
+    }
+  </script>
+</body>
 </html>
+
+
+
