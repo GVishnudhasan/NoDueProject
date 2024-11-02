@@ -1,3 +1,167 @@
+<style>
+  /* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #5c0101, #00050c);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Marquee Styles */
+marquee {
+    background-color: #00060a; /* Blue background for marquee */
+    color: white; /* White text */
+    padding: 15px 0;
+    font-family: 'Libre Baskerville', serif;
+
+    font-size: 30px; /* Larger text size for marquee */
+    width: 100%;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.desktop-header,
+.mobile-header {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Heading Styles */
+h2 {
+    color: #f4f7f9; /* Darker blue for section headings */
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2.5em; /* Larger header size */
+}
+
+h1 {
+    color: #2c0002; /* Bright blue for main titles */
+    margin-bottom: 20px;
+    font-family: 'Libre Baskerville', serif;
+
+    font-weight: bold;
+    font-size: 3em; /* Larger title size */
+}
+
+/* Card Container Styles */
+.card-container {
+    background: #ffffff; /* White background for cards */
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 10px;
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+}
+
+.card-container:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 25px; /* More space between form groups */
+}
+
+/* Input Styles */
+.form-control {
+    border: 2px solid #bdc3c7; /* Light gray border */
+    border-radius: 5px;
+    padding: 14px; /* Increased padding for larger touch area */
+    width: 100%;
+    font-size: 1.1em; /* Larger font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition effects */
+}
+
+.form-control:focus {
+    border-color: #430102; /* Change border color on focus */
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5); /* Focus shadow */
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1.2em; /* Larger button text */
+    transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+}
+
+.btn-primary {
+    background-color: #00070b; /* Blue background for primary button */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #450004; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.btn-success {
+    background-color: #150000; /* Green background for success button */
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #050505; /* Darker green on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Invalid Feedback Styles */
+.invalid-feedback {
+    font-size: 1em; /* Larger font for error messages */
+    color: red;
+}
+
+/* Alert Styles */
+.alert {
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 12px;
+    transition: opacity 0.3s; /* Fade effect */
+}
+
+.alert-success {
+    background-color: #d4edda; /* Light green for success alert */
+    color: #155724; /* Darker green text */
+    border-color: #c3e6cb; /* Border color for success alert */
+}
+
+.alert-danger {
+    background-color: #f8d7da; /* Light red for danger alert */
+    color: #721c24; /* Darker red text */
+    border-color: #f5c6cb; /* Border color for danger alert */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-container {
+        padding: 25px;
+        max-width: 100%;
+    }
+    h2, h1 {
+        font-size: 1.8em; /* Adjust font size for smaller screens */
+    }
+}
+
+</style>
 <marquee behavior="" direction="">
   <h3>Welcome to Online No Due Management System - KSRIET || This Project is Designed and Developed by G VISHNUDHASAN, A RAGUL, D GEETHAPRIYA and K NANDHINI - Department of CSE (Batch 2021-2025).</h3>
 </marquee>
@@ -6,7 +170,7 @@
   <img src="./assets/mobile_header.png" alt="" class="img-responsive mobile-header">
 </header>
 <div class="col-md-12">
-  <h2>No Due Management System</h2>
+  <!-- <h2>No Due Management System</h2> -->
   <div class="card card-container">
     <h1 style="text-align: center;">Login</h1>
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
@@ -42,18 +206,50 @@
           Login
         </button>
 
-      </div>
-      <div class="form-group">
-        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger" role="alert">
-          Login failed: {{ errorMessage }}
-        </div>
-      </div>
+     
     </form>
 
-    <div class="alert alert-success" *ngIf="isLoggedIn">
-      Logged in as {{ name }}.
-      <!-- Go to Dashboard <a routerLink="/student-board">here</a>. -->
-      Go to Dashboard <button (click)="goto()">Dashboard</button>.
-    </div>
+
   </div>
 </div>
+ <!-- Registration Form -->
+  <div class="col-md-12 mt-4">
+    <div class="card card-container">
+      <h1 style="text-align: center;">Register</h1>
+      <form name="registerForm" (ngSubmit)="onRegister()" #registerForm="ngForm" novalidate>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="registerForm.name" required #name="ngModel"
+            [ngClass]="{ 'is-invalid': registerForm.submitted && name.errors }" />
+          <div *ngIf="name.errors && registerForm.submitted" class="invalid-feedback">
+            Name is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="registerForm.email" required
+            #email="ngModel" [ngClass]="{ 'is-invalid': registerForm.submitted && email.errors }" />
+          <div *ngIf="email.errors && registerForm.submitted" class="invalid-feedback">
+            Email is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="registerForm.password" required minlength="6"
+            #password="ngModel" [ngClass]="{ 'is-invalid': registerForm.submitted && password.errors }" />
+          <div *ngIf="password.errors && registerForm.submitted" class="invalid-feedback">
+            <div *ngIf="password.errors['required']">Password is required</div>
+            <div *ngIf="password.errors['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <button class="btn btn-success btn-block">
+            Register
+          </button>
+        </div>
+       
+      </form>
+    </div>
+  </div>
