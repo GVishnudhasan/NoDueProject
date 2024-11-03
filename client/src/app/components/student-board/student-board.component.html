@@ -79,8 +79,10 @@
   color: white;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
 .navbar-brand {
@@ -91,6 +93,7 @@
 .navbar-items {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Wrap items in navbar */
 }
 
 .logout {
@@ -122,6 +125,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  overflow-x: auto; /* Allows horizontal scrolling on small screens */
 }
 
 .table th, .table td {
@@ -141,6 +145,11 @@
 }
 
 /* Button Styles */
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .btn-download {
   background-color: #4CAF50;
   color: white;
@@ -149,6 +158,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 1rem; /* Font size for better readability */
 }
 
 .btn-download:hover {
@@ -180,4 +190,30 @@
 .status-rejected {
   color: #721c24;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items vertically */
+    text-align: center;
+  }
+  
+  .navbar-items {
+    margin-top: 10px;
+  }
+  
+  .table th, .table td {
+    padding: 10px 5px; /* Adjust padding for smaller screens */
+  }
+
+  .btn-download {
+    padding: 8px 12px; /* Adjust button padding for smaller screens */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .btn-logout, .btn-download {
+    width: 100%; /* Full-width buttons on small screens */
+  }
+}
+
 </style>
