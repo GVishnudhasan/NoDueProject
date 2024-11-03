@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
@@ -19,13 +19,14 @@ export class LoginComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = 'fa-eye-slash';
   isLoggedIn = false;
+  @Output() loginEvent = new EventEmitter<boolean>();
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
   email: string = '';
   name: string = ''; 
 
-  togglePasswordVisibility(){
+  togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
@@ -48,10 +49,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password).subscribe({
       next: (data) => {
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        Swal.fire("Thank You...",'Login Successfully','success')
+        Swal.fire("Thank You...", 'Login Successfully', 'success');
         this.roles = this.storageService.getUser().roles;
         
         if (this.roles.includes('ROLE_ADMIN')) {
@@ -61,25 +61,25 @@ export class LoginComponent implements OnInit {
         } else {
           this.router.navigate(['/student-board']);
         }
+        this.loginEvent.emit(this.isLoggedIn);
       },
       error: (err) => {
-        this.errorMessage = err.error.message;
+        console.error('Login error:', err);
+        console.error('Error status:', err.status);
+        console.error('Error message:', err.error?.message);
+        console.error('Full error object:', err);
+        this.errorMessage = err.error?.message || 'An error occurred during login';
         this.isLoginFailed = true;
+        Swal.fire("Error", this.errorMessage, 'error');
       },
     });
   }
-
-  /*hideShowPass() {
-    this.isText = !this.isText;
-    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
-    this.isText ? (this.type = 'text') : (this.type = 'password');
-  }*/
 
   reloadPage(): void {
     window.location.reload();
   }
 
-  goto(){
+  goto(): void {
     const user_role = this.storageService.getUser().roles;
     console.log(user_role[0], user_role[0].split('_')[1].toLowerCase());
     const role = user_role[0].split('_')[1].toLowerCase();
