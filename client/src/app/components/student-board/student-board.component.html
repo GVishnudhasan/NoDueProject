@@ -5,15 +5,15 @@
   <div class="navbar-items">
     Welcome {{ name }}
     <div class="logout">
-      <button (click)="logout()">Logout</button>
+      <button (click)="logout()" class="btn-logout">Logout</button>
     </div>
   </div>
 </nav>
 
 <hr>
-<h1 style="text-align: center;">You're one step away from getting your No Dues!</h1>
+<h1 class="header">You're one step away from getting your No Dues!</h1>
 <hr>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Subject</th>
@@ -25,7 +25,11 @@
   </thead>
   <tbody>
     <ng-container *ngIf="subjects">
-      <tr *ngFor="let subject of subjects">
+      <tr *ngFor="let subject of subjects" [ngClass]="{
+          'row-pending': subject.status === 'pending',
+          'row-approved': subject.status === 'approved',
+          'row-rejected': subject.status === 'rejected'
+        }">
         <td>{{ subject.course_name }}</td>
         <td>{{subject.handlingFaculty}}</td>
         <td *ngIf="!subject.handlingFaculty">N/A</td>
@@ -56,10 +60,8 @@
       </tr>
     </ng-container>
 
-    <!-- <button class="download-btn" (click)="downloadNoDueForm()" [disabled]="!isDownloadButtonEnabled()">Download No Due Form</button> -->
     <div class="center">
-      <button (click)="downloadNoDueForm()" [disabled]="!isDownloadButtonEnabled()">Download No Due
-        Form</button>
+      <button (click)="downloadNoDueForm()" [disabled]="!isDownloadButtonEnabled()" class="btn-download">Download No Due Form</button>
     </div>
 
     <ng-container *ngIf="!subjects || subjects.length === 0">
@@ -70,4 +72,148 @@
   </tbody>
 </table>
 
-<!-- <button (click)="requestHoDSignature()" [disabled]="!isHoDButtonEnabled()">Request HoD Signature</button> -->
+<style>
+/* Navbar Styles */
+.navbar {
+  background-color: #4a90e2;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* Wrap items in navbar */
+}
+
+.logout {
+  margin-left: 20px;
+}
+
+.btn-logout {
+  background-color: #e94e77;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #d9436f;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto; /* Allows horizontal scrolling on small screens */
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.table th {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Button Styles */
+.center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-download {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem; /* Font size for better readability */
+}
+
+.btn-download:hover {
+  background-color: #45a049;
+}
+
+/* Row Status Styles */
+.row-pending {
+  background-color: #fff3cd;
+}
+
+.row-approved {
+  background-color: #d4edda;
+}
+
+.row-rejected {
+  background-color: #f8d7da;
+}
+
+/* Status Styles */
+.status-pending {
+  color: #856404;
+}
+
+.status-approved {
+  color: #155724;
+}
+
+.status-rejected {
+  color: #721c24;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack navbar items vertically */
+    text-align: center;
+  }
+  
+  .navbar-items {
+    margin-top: 10px;
+  }
+  
+  .table th, .table td {
+    padding: 10px 5px; /* Adjust padding for smaller screens */
+  }
+
+  .btn-download {
+    padding: 8px 12px; /* Adjust button padding for smaller screens */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .btn-logout, .btn-download {
+    width: 100%; /* Full-width buttons on small screens */
+  }
+}
+
+</style>
