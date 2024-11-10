@@ -66,9 +66,10 @@ label {
 
 h2 {
   text-align: center;
-  color: #0c1014;
-  font-size: 2.5em;
-  font-weight: 500;
+  color: #10491e;
+  font-size: 3em;
+  font-family: "Eczar",serif;
+  font-weight: 1000;
   top: 170px;
   margin-bottom: 10px;
   position: relative; /* Add position: relative to h2 */
